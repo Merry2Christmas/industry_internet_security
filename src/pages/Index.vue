@@ -5,7 +5,8 @@
         <div class="header">
             <Head></Head>
 
-            <el-breadcrumb :separator-icon="ArrowRight">
+             <!-- :separator-icon="ArrowRight" -->
+            <el-breadcrumb>
                 <el-breadcrumb-item :to="{ path: '/' }">剧本管理</el-breadcrumb-item>
             </el-breadcrumb>
         </div>

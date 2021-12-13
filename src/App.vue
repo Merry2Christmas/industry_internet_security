@@ -11,3 +11,11 @@ export default {
     name: "App",
 };
 </script>
+
+<style lang="less" scoped>
+#app{
+	#nav{
+		min-width: 1000px;
+	}
+}
+</style>

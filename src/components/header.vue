@@ -12,12 +12,23 @@
 
 <script>
 import { ref, reactive } from 'vue';
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+
+
+// useRoute 和 useRouter的区别
+// useRoute 返回的是 function useRoute() {
+//     return inject(routeLocationKey);
+// }
+// useRouter 返回的是 function useRouter() {
+//     return inject(routerKey);
+// }
+
 export default {
     name: "Login",
     setup() {
-        let activeId = ref('0');
-        let router = useRouter(); // 路由跳转
+        let activeId = ref('0');    // 路由所在的索引
+        let route = useRoute();     // 路由跳转的方法
+        let router = useRouter();   // 路由的对象，包含了许多关键的对象和属性
         let List = reactive(
             [{ name:'剧本管理', id: 0, path:'/Drama' }, { name:'武器管理', id: 1, path:'/Weapon' }]);
         
@@ -28,6 +39,12 @@ export default {
                 path: item.path
             })
         }
+
+        // 初始化函数
+        function Init(){
+            activeId.value = route.path.split('/')[1] == '/Weapon' ? 0 : 1;
+        }
+        Init();
         
         return {
             activeId,

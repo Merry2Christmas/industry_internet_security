@@ -1,4 +1,4 @@
-
+// 设置面包屑样式
 .el-breadcrumb{
     width: 100%;
     height: 30px;
@@ -14,9 +14,25 @@
         }
     }
 }
+// 方框的统一样式
+.standard-box{
+    box-shadow: 0px 1px 4px 0px rgba(0, 59, 129, 0.15);
+    border-radius: 3px;
+    background: #FFFFFF;
+}
 
+// 设置滚动条
+.scrollbar-for {
+    .el-scrollbar__wrap {
+        overflow-x: hidden !important;
+    }
+}
+
+// 设置带有小蓝条的h3标题
 ._title{
+    display: flex;
     h3{
+        flex: 1;
         position: relative;
         font-size: 16px;
         font-weight: bold;
@@ -24,7 +40,6 @@
         line-height: 49px;
         text-align: left;
         text-indent: 30px;
-        border-bottom: 1px solid rgba(162, 189, 220, 0.25);
         &::after{
             position: absolute;
             content: '';
@@ -42,6 +57,108 @@
             font-size: 14px;
             font-weight: 400;
             color: #999999;
+
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+    .icon {
+        display: flex;
+        padding: 12px;
+        >div{
+            margin-left: 30px;
+            position: relative;
+            &::after{
+                display: inline-block;
+                content: '';
+                position: absolute;
+                left: -15px;
+                top: -7px;
+                height: 40px;
+                width: 1px;
+                background: rgba(162, 189, 220, 0.25);
+            }
+        }
+    }
+}
+// element 的dialog弹窗通用样式
+.el-dialog.common-dialog{
+    .el-dialog__header {
+        position: relative;
+        padding: 20px 16px;
+        text-align: left;
+        height: 18px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #1A1A1A;
+        line-height: 27px;
+        .el-dialog__title{
+            font-weight: bold;
+        }
+
+        .remark {
+            position: absolute;
+            text-align: left;
+            height: 12px;
+            font-size: 12px;
+            font-weight: 400;
+            color: #FF6383;
+            line-height: 18px;
+        }
+    }
+
+    .el-dialog__body {
+        padding: 0px 16px;
+
+        .el-form {
+            .el-form-item__error {
+                padding-top: 0px !important;
+            }
+
+            .el-form-item {
+                margin-bottom: 10px;
+                .el-form-item__label{
+                    font-weight: bold;
+                    color: #1A1A1A;
+                }
+            }
+
+            .el-input {
+                .el-input__inner {
+                    border: none;
+                    height: 30px;
+                    background: #F0F0F0;
+                    border-radius: 3px;
+                }
+            }
+
+            .el-textarea {
+                margin-top: 5px;
+
+                .el-textarea__inner {
+                    border: none;
+                    background: #F0F0F0;
+                    border-radius: 3px;
+                }
+            }c
+
+            .el-date-editor {
+                width: 100%;
+            }
+
+            .el-autocomplete {
+                width: 100% !important;
+            }
+        }
+    }
+
+    .el-dialog__footer {
+        .el-button {
+            width: 70px;
+            height: 30px;
+            line-height: 0;
+            border-radius: 3px;
         }
     }
 }

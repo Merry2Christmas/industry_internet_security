@@ -26,7 +26,8 @@ import {
       host: "0.0.0.0",
       proxy: {
         '/v1': {
-          target: 'http://10.1.16.238:9091/',
+          // target: 'http://10.1.16.238:9091/',
+          target: 'http://10.0.4.160:9091/',
           changeOrigin: true,
         },
       }
