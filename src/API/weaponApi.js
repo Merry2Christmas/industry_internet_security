@@ -8,7 +8,6 @@ import {
 export default{
     // 获得剧本列表信息    -->   参数： 页码  (每页)条数, 筛选项
     async getWeaponInfo(pageIndex,pageSize, param){
-        const res = await get(`v1/iist/weapon/pageList?pageIndex=${pageIndex}&pageSize=${pageSize}`)
-        return res;
+        return await get(`v1/iist/weapon/pageList?pageIndex=${pageIndex}&pageSize=${pageSize}`)
     },
 }

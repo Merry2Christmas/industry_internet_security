@@ -42,7 +42,7 @@ export default {
 
         // 初始化函数
         function Init(){
-            activeId.value = route.path.split('/')[1] == '/Weapon' ? 0 : 1;
+            activeId.value = route.path.split('/')[1] == 'Weapon' ? 1 : 0;
         }
         Init();
         

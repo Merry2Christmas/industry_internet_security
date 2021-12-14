@@ -9,7 +9,7 @@
                         class="item"
                         effect="dark"
                         content="删除武器"
-                        placement="top-start"
+                        placement="top"
                         :show-after="800">
                         <div class="del" @click="delWeapon"></div>
                     </el-tooltip>
@@ -17,7 +17,7 @@
                         class="item"
                         effect="dark"
                         content="武器下载"
-                        placement="top-start"
+                        placement="top"
                         :show-after="800">
                         <div class="download" @click="downloadWeapon"></div>
                     </el-tooltip>
@@ -25,7 +25,7 @@
                         class="item"
                         effect="dark"
                         content="新增武器"
-                        placement="top-start"
+                        placement="top"
                         :show-after="800">
                         <div class="add" @click="addWeapon"></div>
                     </el-tooltip>
@@ -39,10 +39,9 @@
                 <div class="content-list">
                     <el-scrollbar style="height:100%" class="scrollbar-for">
                         <el-row v-for="(item,index) in contentList" :key="index">
-
                             <el-col :span="1">{{ index+1+pageSize*(currentPage-1) }}</el-col>
-                            <el-col :span="4">{{ item.payloadName||'--' }}</el-col>
-                            <el-col :span="2">{{ item.payloadType || '--' }}</el-col>
+                            <el-col :span="3" class="skip" @click="skip">{{ item.payloadName||'--' }}</el-col>
+                            <el-col :span="3">{{ item.payloadType || '--' }}</el-col>
                             <el-col :span="2">{{ item.topType || '--' }}</el-col>
                             <el-col :span="2">{{ item.vulnerabilityNo || '--' }}</el-col>
                             <el-col :span="2">{{ item.riskLevel || '--' }}</el-col>
@@ -50,8 +49,22 @@
                             <el-col :span="3">{{ item.platform.toString() || '--' }}</el-col>
                             <el-col :span="3">{{ item.appName || '--' }}</el-col>
                             <el-col :span="3" class="operate">
-                                <div class="detail" @click="weaponDetail"></div>
-                                <div class="del" @click="delWeapon"></div>
+                                <el-tooltip
+                                class="item"
+                                effect="dark"
+                                content="查看武器详情"
+                                placement="top"
+                                :show-after="800">
+                                    <div class="detail" @click="weaponDetail"></div>
+                                </el-tooltip>
+                                <el-tooltip
+                                class="item"
+                                effect="dark"
+                                content="删除武器"
+                                placement="top"
+                                :show-after="800">
+                                    <div class="del" @click="delWeapon"></div>
+                                </el-tooltip>
                             </el-col>
                         </el-row>
                     </el-scrollbar>
@@ -72,6 +85,7 @@
 <script>
 import { ref, toRef, toRefs, reactive, onMounted, onUpdated } from 'vue';
 
+import { ElMessageBox, ElMessage } from 'element-plus'
 import weaponApi from "../API/weaponApi"
 import auth from "../assets/js/auth.js"
 export default {
@@ -80,8 +94,8 @@ export default {
         // 武器列表的标题
         let titleList = reactive([
             { name:"序号", width: 1 },
-            { name:"武器名称", width: 4 },
-            { name:"武器类型", width: 2 },
+            { name:"武器名称", width: 3 },
+            { name:"武器类型", width: 3 },
             { name:"一级列别", width: 2 },
             { name:"漏洞编号", width: 2 },
             { name:"危害等级", width: 2 },
@@ -201,6 +215,13 @@ export default {
             weaponInfo.pageIndex = val;
             WeaponInfo();
         }
+        // 界面跳转
+        function skip(){
+            // let path = param ? '/Drama/dramaRun' : '/Drama/dramaEdit';
+            // router.push({
+            //     path: path,
+            // })
+        }
         
         return {
             titleList,
@@ -214,7 +235,8 @@ export default {
             weaponDetail,
             
             handleSizeChange,
-            handleCurrentChange
+            handleCurrentChange,
+            skip
         };
     },
 };
@@ -256,6 +278,7 @@ export default {
             line-height: 64px;
         }
         ._list{
+            height: calc(100% - 114px);
             .list-title{
                 width: 100%;
                 height: 46px;
@@ -276,6 +299,7 @@ export default {
                 }
             }
             .content-list{
+                height: calc(100% - 96px);
                 .el-row{
                     width: 100%;
                     height: 44px;
@@ -292,6 +316,10 @@ export default {
                         overflow: hidden;
                         white-space: nowrap;
                         text-overflow: ellipsis;
+                    }
+                    .skip{
+                        color: rgba(0, 130, 255, 1) !important;
+                        cursor: pointer;
                     }
                     .operate{
                         >div{

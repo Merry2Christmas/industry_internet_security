@@ -32,7 +32,6 @@ export default {
 <style lang="less" scoped>
 .index{
     width: 100%;
-    // height: 100%;
     height: 100vh;
     .header{
         width: 100%;

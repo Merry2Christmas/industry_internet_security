@@ -1,16 +1,40 @@
 <template>
     
     <!-- 剧本管理 -->
-    <div class="drama">
+    <div class="drama" id="drama">
+        
+        <!-- 左侧状态及列表 -->
         <div class="drama-left">
             <ul class="drama-type">
-                <li v-for="(item,index) in dramaList" :key="index" class="standard-box">
+                <li class="standard-box">
+                    <div class="dramaImg total"></div>
+                    <div class="dramaData">
+                        <p>剧本总数</p>
+                        <h3>{{ dramaList.total }}</h3>
+                    </div>
+                </li>
+                <li class="standard-box">
+                    <div class="dramaImg planning"></div>
+                    <div class="dramaData">
+                        <p>待发布</p>
+                        <h3>{{ dramaList.planning }}</h3>
+                    </div>
+                </li>
+                <li class="standard-box">
+                    <div class="dramaImg running"></div>
+                    <div class="dramaData">
+                        <p>已发布</p>
+                        <h3>{{ dramaList.running }}</h3>
+                    </div>
+                </li>
+
+                <!-- <li v-for="(item,index) in dramaList" :key="index" class="standard-box">
                     <div class="dramaImg" :class="item.key"></div>
                     <div class="dramaData">
                         <p>{{ item.name }}</p>
                         <h3>{{ item.total }}</h3>
                     </div>
-                </li>
+                </li> -->
             </ul>
             <div class="drama-content standard-box">
                 <div class="drama-list">
@@ -21,15 +45,15 @@
                                 class="item"
                                 effect="dark"
                                 content="删除剧本"
-                                placement="top-start"
+                                placement="top"
                                 :show-after="800">
-                                <div class="del" @click="delDaram"></div>
+                                <div class="del"></div>
                             </el-tooltip>
                             <el-tooltip
                                 class="item"
                                 effect="dark"
                                 content="新增剧本"
-                                placement="top-start"
+                                placement="top"
                                 :show-after="800">
                                 <div class="add" @click="addDrama"></div>
                             </el-tooltip>
@@ -44,15 +68,31 @@
                         <div class="content-list">
                             <el-scrollbar style="height:100%" class="scrollbar-for">
                                 <el-row v-for="(item,index) in contentList" :key="index">
-                                    <el-col :span="1">{{ index+1 }}</el-col>
-                                    <el-col :span="4">{{ item.name || '--' }}</el-col>
+                                    <el-col :span="1">{{ index+1+(pageIndex-1)*pageSize }}</el-col>
+                                    <el-col :span="5" class="skip" @click="skip(item.status)">{{ item.name || '--' }} ></el-col>
                                     <el-col :span="5">{{ item.createTime || '--' }}</el-col>
                                     <el-col :span="5">{{ item.publishTime || '--' }}</el-col>
-                                    <el-col :span="3">{{ item.runNum || '--' }}</el-col>
+                                    <el-col :span="2">{{ item.runNum || '0' }}</el-col>
                                     <el-col :span="3" :style="`color: ${item.status=='1'?'rgba(4, 199, 126, 1)':'rgba(153, 153, 153, 1)'}`">{{ statusList[item.status] }}</el-col>
                                     <el-col :span="3" class="operate">
-                                        <div class="del" @click="delDaram"></div>
-                                        <div class="refresh" @click="reFresh"></div>
+                                        <el-tooltip
+                                            class="item"
+                                            effect="dark"
+                                            content="删除剧本"
+                                            placement="top"
+                                            :show-after="800">
+                                            <div class="del" @click="delDrama(item._id)"></div>
+                                        </el-tooltip>
+                                        <el-tooltip
+                                            class="item"
+                                            effect="dark"
+                                            content="重新编排"
+                                            placement="top"
+                                            :show-after="800"
+                                            v-if="item.status">
+                                            <div class="refresh" @click="reFresh"></div>
+                                        </el-tooltip>
+                                        
                                     </el-col>
                                 </el-row>
                             </el-scrollbar>
@@ -61,61 +101,41 @@
                 </div>
                 
                 <div class="page">
-                    <el-pagination background layout="prev, pager, next" :total="total"
-                     v-model:currentPage="currentPage"
-                     @size-change="handleSizeChange" 
-                     @current-change="handleCurrentChange"></el-pagination>
+                    <el-pagination background layout="total, prev, pager, next" :total="total"
+                    v-model:currentPage="currentPage"
+                    @size-change="handleSizeChange" 
+                    @current-change="handleCurrentChange"></el-pagination>
                 </div>
             </div>
             
         </div>
-
-
+        
+        <!-- 右侧模板 -->
         <div class="drama-right standard-box">
             <div class="_title">
                 <h3>剧本模板<span>共23条</span></h3>
             </div>
             <div class="filter">
-                <el-select v-model="value" filterable placeholder="搜索">
-                    <!-- <el-option
-                        v-for="item in options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value">
-                    </el-option> -->
-                </el-select>
+                <el-select v-model="search" filterable placeholder="搜索"></el-select>
             </div>
             <div class="content">
-                <ul>
-                    <li v-for="(item,index) in templetList" :key="index">
-                        <div class="temple-title">
-                            <h5>{{index +1 }} {{item.name}}</h5>
-                            <span>应用</span>
-                        </div>
-                        <div class="temple-content">{{ item.description || '暂无描述' }}</div>
-                    </li>
-                </ul>
+                <el-scrollbar style="height:100%" class="scrollbar-for">
+                    <ul>
+                        <li v-for="(item,index) in templetList" :key="index">
+                            <div class="temple-title">
+                                <h5>{{index +1 }} {{item.name}}</h5>
+                                <span @click="addDrama">应用</span>
+                            </div>
+                            <div class="temple-content">{{ item.description || '暂无描述' }}</div>
+                        </li>
+                    </ul>
+                </el-scrollbar>
             </div>
         </div>
 
-        <!-- <el-dialog title="创建剧本"
-            v-model="dialogVisible"
-            width="450px"
-            :before-close="handleClose"
-            custom-class="common-dialog drama-dialog">
-            <el-form label-position="left" label-width="88px">
-                <el-form-item label="名称"><el-input placeholder="请输入"></el-input></el-form-item>
-                <el-form-item label="模板"><el-input placeholder="请输入"></el-input></el-form-item>
-                <el-form-item label="描述"><el-input placeholder="请输入" type="textarea"></el-input></el-form-item>
-            </el-form>
-            <template #footer>
-                <span class="dialog-footer">
-                    <el-button @click="dialogVisible = false" size="small">取消</el-button>
-                    <el-button type="primary" @click="dialogVisible = false" size="small">确定</el-button>
-                </span>
-            </template>
-        </el-dialog> -->
-        <Dialog :dialogVisible="dialogVisible" @handleClose='handleClose'></Dialog>
+        <!-- @绑定的自定义事件 -->
+        <!-- idAdd 种类是新增还是修改 -->
+        <Dialog :dialogVisible="dialogVisible" @show="showDialog" @Info="Info"></Dialog>
 
     </div>
 
@@ -125,6 +145,8 @@
 import { ref, toRef, toRefs, reactive, onMounted, onUpdated } from 'vue';
 import { defineComponent } from 'vue'
 import { ElMessageBox, ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router'
+
 import test from "../API/test.js"
 import daramApi from "../API/dramaApi"
 import auth from "../assets/js/auth.js"
@@ -133,16 +155,22 @@ export default {
     name: "Drama",
     components:{ Dialog },
     setup() {
+        //路由
+        let router = useRouter();
         // 剧本总数，待发布，已发布的三个状态
-        let dramaList = ref([])
+        let dramaList = reactive({
+            total: 0,
+            planning: 0,
+            running: 0
+        });
 
         // 剧本列表的标题头部数据
         const titleList = reactive([
             { name:"序号", width: 1 },
-            { name:"剧本名称", width: 4 },
+            { name:"剧本名称", width: 5 },
             { name:"创建时间", width: 5 },
             { name:"最近发布时间", width: 5 },
-            { name:"发布次数", width: 3 },
+            { name:"发布次数", width: 2 },
             { name:"当前状态", width: 3 },
             { name:"操作", width: 3 },
         ])
@@ -170,7 +198,9 @@ export default {
             pageSize: 10,
             param: '',
             total: 0,
-            currentPage:1
+            currentPage:1,
+            
+            search:'',  // 搜索内容
         });
 
         // 获得信息
@@ -190,13 +220,7 @@ export default {
         async function StatusInfo(){
             let res = await daramApi.getStatusInfo();
             if(res.code == '200'){
-                for(let key in res.data){
-                    dramaList.value.push({
-                        key: key,
-                        name: key == 'total' ? '剧本总数' : key == 'planning' ? '待发布' : '已发布',
-                        total: res.data[key]
-                    })
-                }
+                dramaList = res.data;
             }
 
         }
@@ -232,28 +256,27 @@ export default {
         }
         // 添加剧本
         function addDrama(){
-            console.log('??????');
             dialog.dialogVisible=true;
-            console.log(dialog.dialogVisible);
-        }
-        // 关闭弹窗
-        function handleClose(){
-            dialog.dialogVisible = false;   // 关闭弹窗
         }
         
         // 删除剧本
-        const delDaram = () => {
+        const delDrama = (param) => {
             ElMessageBox.confirm( '是否删除该剧本?', '提示',
                 {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning',
                 }
-            ).then(() => {
-                ElMessage({
-                    type: 'success',
-                    message: '删除成功',
-                })
+            ).then(async () => {
+                let res = await daramApi.delDrama(param);
+                if(res.code == '200'){
+                    ElMessage({
+                        message: res.msg,
+                        type: res.code == '200' ? 'success' : 'error',
+                        appendTo: document.getElementById('drama'),
+                    })
+                    Info();
+                }
             }).catch(() => {
                 ElMessage({
                     type: 'info',
@@ -281,6 +304,18 @@ export default {
                 })
             })
         }
+        // 界面跳转  ----> 进入编排/编辑界面
+        function skip(param){
+            let path = param ? '/Drama/dramaRun' : '/Drama/dramaEdit';
+            router.push({
+                path: path,
+            })
+        }
+        // 是否展示弹窗
+        function showDialog(value){
+            dialog.dialogVisible = value;
+        }
+
         return {
             dramaList,
             titleList,
@@ -290,12 +325,14 @@ export default {
             statusList,
             ...toRefs(dialog),
             // 方法
+            Info,
             handleSizeChange,
             handleCurrentChange,
             addDrama,
-            handleClose,
-            delDaram,
+            delDrama,
             reFresh,
+            skip,
+            showDialog
         };
     },
 };
@@ -401,7 +438,7 @@ export default {
             width: 100%;
             height: calc(100% - 113px);
             .drama-list{
-                max-height: calc(100% - 163px);
+                height: calc(100% - 50px);
                 ._title{
                     height: 49px;
                     border-bottom: 1px solid rgba(162, 189, 220, 0.25);
@@ -424,7 +461,7 @@ export default {
                     line-height: 64px;
                 }
                 ._list{
-                    max-height: calc(100% - 114px);
+                    height: calc(100% - 114px);
                     .list-title{
                         width: 100%;
                         height: 46px;
@@ -445,11 +482,16 @@ export default {
                         }
                     }
                     .content-list{
+                        height: calc(100% - 46px);
                         .el-row{
                             width: 100%;
                             height: 44px;
                             padding-left: 22px;
                             box-sizing: border-box;
+                            .skip{
+                                color: rgba(0, 130, 255, 1) !important;
+                                cursor: pointer;
+                            }
                             .el-col{
                                 height: 44px;
                                 font-size: 14px;
@@ -513,6 +555,7 @@ export default {
             }
         }
         .content{
+            height: calc(100% - 98px);
             ul{
                 padding: 10px;
                 li{

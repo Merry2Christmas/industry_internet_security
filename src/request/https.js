@@ -191,7 +191,9 @@ export function put(url, params) {
   })
 }
 
+
 /** 
+ * 参数放在路径里面
  * delete方法，对应delete请求 
  * @param {String} url [请求的url地址] 
  * @param {Object} params [请求时携带的参数] 
