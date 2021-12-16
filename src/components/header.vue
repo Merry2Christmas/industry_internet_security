@@ -19,9 +19,13 @@ import { useRoute, useRouter } from 'vue-router'
 // useRoute 返回的是 function useRoute() {
 //     return inject(routeLocationKey);
 // }
+// 相当于vue2的this.$route表示当前激活的路由的状态信息，包含了当前 URL 解析得到的信息，还有 URL 匹配到的 route路由记录
+
+
 // useRouter 返回的是 function useRouter() {
 //     return inject(routerKey);
 // }
+// 相当于vue2的this.$router全局的路由实例，是router构造方法的实例
 
 export default {
     name: "Login",

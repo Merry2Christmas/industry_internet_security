@@ -28,18 +28,12 @@
                     </div>
                 </li>
 
-                <!-- <li v-for="(item,index) in dramaList" :key="index" class="standard-box">
-                    <div class="dramaImg" :class="item.key"></div>
-                    <div class="dramaData">
-                        <p>{{ item.name }}</p>
-                        <h3>{{ item.total }}</h3>
-                    </div>
-                </li> -->
             </ul>
             <div class="drama-content standard-box">
                 <div class="drama-list">
                     <div class="_title">
                         <h3>剧本列表<span>共{{ total }}条</span></h3>
+
                         <div class="icon">
                             <el-tooltip
                                 class="item"
@@ -65,11 +59,11 @@
                         <el-row class="list-title">
                             <el-col v-for="(item,index) in titleList" :key="index" :span="item.width">{{ item.name || '--' }}</el-col>
                         </el-row>
-                        <div class="content-list">
+                        <div class="content-list" v-if="contentList.length">
                             <el-scrollbar style="height:100%" class="scrollbar-for">
                                 <el-row v-for="(item,index) in contentList" :key="index">
                                     <el-col :span="1">{{ index+1+(pageIndex-1)*pageSize }}</el-col>
-                                    <el-col :span="5" class="skip" @click="skip(item.status)">{{ item.name || '--' }} ></el-col>
+                                    <el-col :span="5" class="skip" @click="skip(item.status,item._id)">{{ item.name || '--' }} ></el-col>
                                     <el-col :span="5">{{ item.createTime || '--' }}</el-col>
                                     <el-col :span="5">{{ item.publishTime || '--' }}</el-col>
                                     <el-col :span="2">{{ item.runNum || '0' }}</el-col>
@@ -97,10 +91,13 @@
                                 </el-row>
                             </el-scrollbar>
                         </div>
+                        <div class="content-list" v-else>
+                            <el-empty description="暂无剧本列表数据"></el-empty>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="page">
+                <div class="page"  v-if="contentList.length">
                     <el-pagination background layout="total, prev, pager, next" :total="total"
                     v-model:currentPage="currentPage"
                     @size-change="handleSizeChange" 
@@ -118,7 +115,7 @@
             <div class="filter">
                 <el-select v-model="search" filterable placeholder="搜索"></el-select>
             </div>
-            <div class="content">
+            <div class="content" v-if="templetList.length">
                 <el-scrollbar style="height:100%" class="scrollbar-for">
                     <ul>
                         <li v-for="(item,index) in templetList" :key="index">
@@ -130,6 +127,9 @@
                         </li>
                     </ul>
                 </el-scrollbar>
+            </div>
+            <div class="content" v-else>
+                <el-empty description="暂无剧本模板数据"></el-empty>
             </div>
         </div>
 
@@ -155,8 +155,8 @@ export default {
     name: "Drama",
     components:{ Dialog },
     setup() {
-        //路由
-        let router = useRouter();
+        
+        let router = useRouter();   //路由
         // 剧本总数，待发布，已发布的三个状态
         let dramaList = reactive({
             total: 0,
@@ -179,41 +179,40 @@ export default {
             0:'未发布',
             1:'已发布'
         }
+        // 新增弹窗的出现与隐藏
         let dialog = reactive({
             dialogVisible: false,
         })
         
         // let contentList = reactive([]);  // 这里reactive的锅我真的是要打人
         // 一直赋值不上去，我以为是异步的问题，结果是reactive在接受后端变量的时候，proxy对象转为了数组，导致无法实现响应式，在前端自定义数据中，最好用ref（以先阶段粗浅的理解），reative支持修改和删除
-        
-        // let contentList = reactive([]);
-        // 剧本列表内容数据
-        let contentList = ref([]);
-        // 剧本模板内容数据
-        let templetList = ref([]);
+        // let contentList = ref([]);
+
 
         // 剧本列表相关的参数信息
         let dramaInfo = reactive({
-            pageIndex: 1,
-            pageSize: 10,
-            param: '',
-            total: 0,
-            currentPage:1,
-            
-            search:'',  // 搜索内容
+            pageIndex: 1,   // 页码
+            pageSize: 10,   // 每页条数
+            param: '',      // 筛选参数
+            total: 0,       // 总条数
+            currentPage:1,  // 当前页
+            search:'',      // 搜索内容
+            contentList:[],    // 剧本列表内容数据
+            templetList:[],    // 剧本模板内容数据
         });
 
         // 获得信息
         async function Info(){
-            // 页码  (每页)条数
+            // 筛选参数     -->     页码  (每页)条数
             let res = await daramApi.getDramaInfo(dramaInfo.pageIndex,dramaInfo.pageSize);
             if(res.code == '200'){
+                // 将创建时间和发布时间由时间戳转为正常时间
                 res.data.list.forEach((d,i)=>{
                     d.createTime  = d.createTime ? auth.getDateTime(d.createTime): '';
                     d.publishTime  = d.publishTime ? auth.getDateTime(d.publishTime): '';
                 })
-                contentList.value = res.data.list;
-                dramaInfo.total = res.data.total;
+                dramaInfo.contentList = res.data.list
+                dramaInfo.total = res.data.total;   // 剧本总数
             }
         }
         // 获得状态信息
@@ -231,7 +230,7 @@ export default {
             }
             let res = await daramApi.getDramaTempletInfo(param);
             if(res.code == '200'){
-                templetList.value = res.data;
+                dramaInfo.templetList = res.data;
             }
         }
         // 初始化信息
@@ -305,10 +304,14 @@ export default {
             })
         }
         // 界面跳转  ----> 进入编排/编辑界面
-        function skip(param){
-            let path = param ? '/Drama/dramaRun' : '/Drama/dramaEdit';
+        function skip(param,id){
+            // let path = param ? '/Drama/dramaRun' : '/Drama/dramaEdit';
+            let path = param ? '/Drama/dramaArrange' : '/Drama/dramaRun';
             router.push({
                 path: path,
+                query:{
+                    id
+                }
             })
         }
         // 是否展示弹窗
@@ -319,10 +322,8 @@ export default {
         return {
             dramaList,
             titleList,
-            contentList,
-            templetList,
-            ...toRefs(dramaInfo),
             statusList,
+            ...toRefs(dramaInfo),
             ...toRefs(dialog),
             // 方法
             Info,
@@ -556,6 +557,8 @@ export default {
         }
         .content{
             height: calc(100% - 98px);
+            padding-bottom: 10px;
+            box-sizing: border-box;
             ul{
                 padding: 10px;
                 li{

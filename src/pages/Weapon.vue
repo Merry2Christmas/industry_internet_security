@@ -36,7 +36,7 @@
                 <el-row class="list-title">
                     <el-col v-for="(item,index) in titleList" :key="index" :span="item.width">{{ item.name || '--' }}</el-col>
                 </el-row>
-                <div class="content-list">
+                <div class="content-list" v-if="contentList.length">
                     <el-scrollbar style="height:100%" class="scrollbar-for">
                         <el-row v-for="(item,index) in contentList" :key="index">
                             <el-col :span="1">{{ index+1+pageSize*(currentPage-1) }}</el-col>
@@ -69,8 +69,10 @@
                         </el-row>
                     </el-scrollbar>
                 </div>
-                <div class="page">
-                    <!-- {{ total3 }} -->
+                <div class="content-list" v-else>
+                    <el-empty description="暂无武器库列表数据"></el-empty>
+                </div>
+                <div class="page" v-if="contentList.length">
                     <el-pagination background layout="prev, pager, next" :total="total"
                      v-model:currentPage="currentPage"
                      @size-change="handleSizeChange" 

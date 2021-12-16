@@ -7,15 +7,15 @@
             :before-close="handleClose"
             :close-on-click-modal="false"
             custom-class="common-dialog drama-dialog">
-            <el-form label-position="left" label-width="88px">
+            <el-form label-position="left" label-width="88px" ref="ruleForm" :model="dramaInfo" :rules="rules">
                 <el-form-item label="名称" prop="name"><el-input placeholder="请输入" v-model="name" clearable></el-input></el-form-item>
-                <el-form-item label="模板"><el-input placeholder="请输入" v-model="templateId" clearable></el-input></el-form-item>
-                <el-form-item label="描述"><el-input placeholder="请输入" v-model="description"></el-input></el-form-item>
+                <el-form-item label="模板" class="indent"><el-input placeholder="请输入" v-model="templateId" clearable></el-input></el-form-item>
+                <el-form-item label="描述" class="indent"><el-input placeholder="请输入" v-model="description"></el-input></el-form-item>
             </el-form>
             <template #footer>
                 <span class="dialog-footer">
-                    <el-button @click="handleClose" size="small">取消</el-button>
-                    <el-button type="primary" @click="handleClose2" size="small">确定</el-button>
+                    <el-button @click="handleClose" size="small" color="#C3C3C3" style="color: white">取消</el-button>
+                    <el-button type="primary" @click="handleClose2()" size="small">确定</el-button>
                 </span>
             </template>
         </el-dialog>
@@ -44,6 +44,8 @@ export default {
             templateId : "",    // 模板id
             description : ""    // 描述
         });
+
+        const ruleForm = ref(null);
         
 
         let rules = reactive({
@@ -57,23 +59,37 @@ export default {
             // 调用父组件的函数对弹窗进行关闭
             context.emit('show',false)
         }
+        
         // 关闭弹窗的同时提交数据
-        async function handleClose2(){
+        const handleClose2 = ()=>{
+            ruleForm.value.validate(valid => {
+                if (valid) {
+                    add();
+                } else {
+                    console.log('error submit!!')
+                    return false
+                }
+            })
+        }
+        async function add(){
             let res = await daramApi.addDrama(dramaInfo);
+
             if(res.code == '200'){
-                ElMessage({
-                    message: res.msg,
-                    type: res.code == '200' ? 'success' : 'error',
-                    appendTo: document.getElementById('drama'),
-                })
                 context.emit('Info');       // 刷新界面
-                context.emit('show',false); // 关闭弹窗
             }
-            
+            context.emit('show',false); // 关闭弹窗
+
+            ElMessage({
+                message: res.msg,
+                type: res.code == '200' ? 'success' : 'error',
+                appendTo: document.getElementById('drama'),
+            })
         }
         
         return{
             rules,
+            ruleForm,
+            dramaInfo,
             ...toRefs(dramaInfo),
             // 函数
             handleClose,
@@ -93,6 +109,14 @@ export default {
             min-height: 76px !important;
             max-height: 76px !important;
         }
+    }
+    .el-form{
+        .indent{
+            /deep/.el-form-item__label{
+                text-indent: 10px;
+            }
+        }
+        
     }
 }
 </style>

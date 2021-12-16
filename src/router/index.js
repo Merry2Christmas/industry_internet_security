@@ -43,11 +43,17 @@ const  routes = [
                 name: "DramaRun",
                 component: () => import("/src/pages/Drama/dramaRun.vue")
             },
+            // {
+            //     // 剧本编排界面
+            //     path: "/Drama/dramaEdit",
+            //     name: "DramaEdit",
+            //     component: () => import("/src/pages/Drama/dramaEdit.vue")
+            // },
             {
                 // 剧本编排界面
-                path: "/Drama/dramaEdit",
-                name: "DramaEdit",
-                component: () => import("/src/pages/Drama/dramaEdit.vue")
+                path: "/Drama/dramaArrange",
+                name: "DramaArrange",
+                component: () => import("/src/pages/Drama/dramaArrange.vue")
             }
         ]
     }
