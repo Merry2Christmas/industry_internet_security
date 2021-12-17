@@ -3,7 +3,7 @@
     <div class="weapon">
         <div class="weapon-list standard-box">
             <div class="_title">
-                <h3>武器库</h3>
+                <h3>武器库<span>共{{ total }}条</span></h3>
                 <div class="icon">
                     <el-tooltip
                         class="item"
@@ -31,7 +31,51 @@
                     </el-tooltip>
                 </div>
             </div>
-            <div class="_filter">这里是请求参数</div>
+            <div class="_filter">
+                <h3>这里是请求参数</h3>
+
+                <!-- <div class="filter-type">
+                    <el-input v-model="input1" placeholder="请输入" size="mini" clearable>
+                        <template #prepend>武器库</template>
+                    </el-input>
+                </div>
+                <div class="filter-type">
+                    <el-input v-model="input1" placeholder="请输入" size="mini" clearable>
+                        <template #prepend>漏洞编号</template>
+                    </el-input>
+                </div>
+                <div class="filter-type">
+                    <el-input v-model="input1" placeholder="请输入" size="mini" clearable>
+                        <template #prepend>受影响产品</template>
+                    </el-input>
+                </div>
+                <div class="filter-type">
+                    <el-input v-model="input1" placeholder="请输入" size="mini" clearable>
+                        <template #prepend>A类型</template>
+                    </el-input>
+                </div>
+                <div class="filter-type">
+                    <el-input v-model="input1" placeholder="请输入" size="mini" clearable>
+                        <template #prepend>危害等级</template>
+                    </el-input>
+                </div>
+                <div class="filter-type">
+                    <el-input v-model="input1" placeholder="请输入" size="mini" clearable>
+                        <template #prepend>利用难度</template>
+                    </el-input>
+                </div>
+                <div class="filter-type">
+                    <el-input v-model="input1" placeholder="请输入" size="mini" clearable>
+                        <template #prepend>平台</template>
+                    </el-input>
+                </div>
+
+                <div class="filter-button">
+                    <el-button type="primary" @click="Filter" size="mini">查询</el-button>
+                    <el-button @click="FilterNone" size="mini">清空</el-button>
+                </div> -->
+
+            </div>
             <div class="_list">
                 <el-row class="list-title">
                     <el-col v-for="(item,index) in titleList" :key="index" :span="item.width">{{ item.name || '--' }}</el-col>
@@ -276,8 +320,20 @@ export default {
             }
         }
         ._filter{
+            width: 100%;
             height: 64px;
             line-height: 64px;
+
+            display: flex;
+            padding: 0 19px;
+            box-sizing: border-box;
+            h3{
+                flex: 1;
+                text-align: center;
+            }
+            .filter-button{
+                padding: 19px 0;
+            }
         }
         ._list{
             height: calc(100% - 114px);

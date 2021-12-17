@@ -163,3 +163,61 @@
         }
     }
 }
+
+// 筛选项 --> 用于input和select
+.filter-type{
+    margin-right: 10px;
+    .el-input-group__prepend{
+        padding: 0 10px;
+        color: #1A1A1A;
+    }
+}
+// 筛选项 --> 用于日期时间筛选器
+.filter-time{
+    width: 300px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    .type{
+        display: inline-block;
+        font-size: 12px;
+        padding: 3px 6px;
+        height: 20px;
+        line-height: 20px;
+        background-color: rgb(245,247,250);
+        border: 1px solid rgb(220,223,230);
+        border-right: none;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        cursor: not-allowed;
+    }
+    .el-range-editor--mini.el-input__inner{
+        flex: 1;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}
+// 筛选按钮
+.filter-button {
+    width: 150px;
+    min-width: 100px;
+    display: flex;
+
+    .el-button {
+        width: 48%;
+        height: 26px;
+        // line-height: 0;
+        margin-left: 2%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .el-button:first-of-type {
+        background: rgba(0, 130, 255, 1);
+    }
+
+    .el-button:last-of-type {
+        border-color: rgba(0, 130, 255, 1);
+        color: rgba(0, 130, 255, 1);
+    }
+}

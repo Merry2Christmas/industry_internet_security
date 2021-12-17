@@ -54,7 +54,45 @@
                             
                         </div>
                     </div>
-                    <div class="_filter">这里是请求参数</div>
+                    <div class="_filter">
+                        <h3>这里是请求参数</h3>
+                        <!-- <div class="filter-type">
+                            <el-input v-model="input1" placeholder="请输入" size="mini" clearable>
+                                <template #prepend>剧本名称</template>
+                            </el-input>
+                        </div>
+                        <div class="filter-type">
+                            <el-input v-model="input1" placeholder="请输入" size="mini" clearable>
+                                <template #prepend>剧本状态</template>
+                            </el-input>
+                        </div>
+
+                        <div class="filter-time">
+                            <span class="type">{{ aa }}</span>
+                            <el-date-picker
+                                type="datetimerange"
+                                range-separator="To"
+                                start-placeholder="开始时间"
+                                end-placeholder="结束时间"
+                                size="mini" clearable>
+                            </el-date-picker>
+                        </div>
+                        <div class="filter-time">
+                            <span class="type">{{ bb }}</span>
+                            <el-date-picker
+                                type="datetimerange"
+                                range-separator="To"
+                                start-placeholder="开始时间"
+                                end-placeholder="结束时间"
+                                size="mini" clearable>
+                            </el-date-picker>
+                        </div>
+                        <div class="filter-button">
+                            <el-button type="primary" @click="Filter" size="mini">查询</el-button>
+                            <el-button @click="FilterNone" size="mini">清空</el-button>
+                        </div> -->
+
+                    </div>
                     <div class="_list">
                         <el-row class="list-title">
                             <el-col v-for="(item,index) in titleList" :key="index" :span="item.width">{{ item.name || '--' }}</el-col>
@@ -155,6 +193,9 @@ export default {
     name: "Drama",
     components:{ Dialog },
     setup() {
+
+        let aa = '开始时间';
+        let bb = '最近发布时间';
         
         let router = useRouter();   //路由
         // 剧本总数，待发布，已发布的三个状态
@@ -253,6 +294,10 @@ export default {
             dramaInfo.pageIndex = val;
             Info();
         }
+        // 对列表进行筛选
+        function Filter(){}
+        // 清空筛选，对列表重新加载
+        function FilterNone(){}
         // 添加剧本
         function addDrama(){
             dialog.dialogVisible=true;
@@ -320,6 +365,9 @@ export default {
         }
 
         return {
+            aa,
+            bb,
+
             dramaList,
             titleList,
             statusList,
@@ -329,6 +377,8 @@ export default {
             Info,
             handleSizeChange,
             handleCurrentChange,
+            Filter,
+            FilterNone,
             addDrama,
             delDrama,
             reFresh,
@@ -458,8 +508,20 @@ export default {
                     }
                 }
                 ._filter{
+                    width: 100%;
                     height: 64px;
                     line-height: 64px;
+                    display: flex;
+                    padding: 0 19px;
+                    box-sizing: border-box;
+
+                    h3{
+                        flex: 1;
+                        text-align: center;
+                    }
+                    .filter-button{
+                        padding: 19px 0;
+                    }
                 }
                 ._list{
                     height: calc(100% - 114px);
