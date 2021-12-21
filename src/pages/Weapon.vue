@@ -84,13 +84,29 @@
                     <el-scrollbar style="height:100%" class="scrollbar-for">
                         <el-row v-for="(item,index) in contentList" :key="index">
                             <el-col :span="1">{{ index+1+pageSize*(currentPage-1) }}</el-col>
-                            <el-col :span="3" class="skip" @click="skip">{{ item.payloadName||'--' }}</el-col>
-                            <el-col :span="3">{{ item.payloadType || '--' }}</el-col>
+                            <el-tooltip
+                                class="item"
+                                effect="dark"
+                                :content="item.payloadName||'--'"
+                                placement="top"
+                                :show-after="800">
+                                <el-col :span="4" class="skip" @click="skip">{{ item.payloadName||'--' }}</el-col>
+                            </el-tooltip>
+                            
+                            <el-tooltip
+                                class="item"
+                                effect="dark"
+                                :content="item.payloadType||'--'"
+                                placement="top"
+                                :show-after="800">
+                                <el-col :span="3">{{ item.payloadType || '--' }}</el-col>
+                            </el-tooltip>
+
                             <el-col :span="2">{{ item.topType || '--' }}</el-col>
                             <el-col :span="2">{{ item.vulnerabilityNo || '--' }}</el-col>
                             <el-col :span="2">{{ item.riskLevel || '--' }}</el-col>
                             <el-col :span="2">{{ item.diffLevel || '--' }}</el-col>
-                            <el-col :span="3">{{ item.platform.toString() || '--' }}</el-col>
+                            <el-col :span="2">{{ item.platform.toString() || '--' }}</el-col>
                             <el-col :span="3">{{ item.appName || '--' }}</el-col>
                             <el-col :span="3" class="operate">
                                 <el-tooltip
@@ -99,7 +115,7 @@
                                 content="查看武器详情"
                                 placement="top"
                                 :show-after="800">
-                                    <div class="detail" @click="weaponDetail"></div>
+                                    <div class="detail" @click="weaponDetail(item.id)"></div>
                                 </el-tooltip>
                                 <el-tooltip
                                 class="item"
@@ -124,29 +140,46 @@
                 </div>
             </div>
         </div>
-        
+
+        <!-- : 是传递参数    @是传递父级的方法 -->
+        <Dialog :dialogVisible="dialogVisible" @show="showDialog" @Info="Info"></Dialog>
     </div>
 </template>
 
 <script>
+import Dialog from "../components/drama/weaponDialog.vue"
+
 import { ref, toRef, toRefs, reactive, onMounted, onUpdated } from 'vue';
 
 import { ElMessageBox, ElMessage } from 'element-plus'
 import weaponApi from "../API/weaponApi"
 import auth from "../assets/js/auth.js"
+import { useRouter } from 'vue-router'
 export default {
     name: "Weapon",
+    components:{ Dialog },
     setup() {
+
+        let router = useRouter();   //路由
+
+        // 新增弹窗的出现与隐藏
+        let dialog = reactive({
+            dialogVisible: false,
+        })
+        // 是否展示弹窗
+        function showDialog(value){
+            dialog.dialogVisible = value;
+        }
         // 武器列表的标题
         let titleList = reactive([
             { name:"序号", width: 1 },
-            { name:"武器名称", width: 3 },
+            { name:"武器名称", width: 4 },
             { name:"武器类型", width: 3 },
             { name:"一级列别", width: 2 },
             { name:"漏洞编号", width: 2 },
             { name:"危害等级", width: 2 },
             { name:"利用难度", width: 2 },
-            { name:"平台", width: 3 },
+            { name:"平台", width: 2 },
             { name:"受影响产品", width: 3 },
             { name:"操作", width: 3 },
         ])
@@ -220,7 +253,7 @@ export default {
         }   
         // 新增武器
         function addWeapon(){
-            //
+            dialog.dialogVisible = true;
         }
 
         function init(){
@@ -233,13 +266,17 @@ export default {
                     // 危害等级的转换
                     if(d.threatLevel){
                         riskList.forEach(x=>{
-                            d.riskLevel = x.value == d.threatLevel ? x.name: '';
+                            if(x.value == d.threatLevel){
+                                d.riskLevel = x.name;
+                            }
                         })
                     }
                     // 利用难度的转换
                     if(d.difficulty){
                         diffList.forEach(x=>{
-                            d.diffLevel = x.value == d.difficulty ? x.name: '';
+                            if(x.value == d.difficulty){
+                                d.diffLevel = x.name;
+                            }
                         })
                     }
                 })
@@ -247,7 +284,15 @@ export default {
                 weaponInfo.total = res.data.total;
             }
         }
-        function weaponDetail(){}
+        // 跳转到武器详情界面
+        function weaponDetail(id){
+            router.push({
+                path: '/Weapon/weaponDetail',
+                query:{
+                    id
+                }
+            })
+        }
         init()
 
         // 设置每页多少条
@@ -273,6 +318,7 @@ export default {
             titleList,
             total3,
             ...toRefs(weaponInfo),
+            ...toRefs(dialog),
             contentList,
             // 方法
             delWeapon,
@@ -282,7 +328,8 @@ export default {
             
             handleSizeChange,
             handleCurrentChange,
-            skip
+            skip,
+            showDialog
         };
     },
 };

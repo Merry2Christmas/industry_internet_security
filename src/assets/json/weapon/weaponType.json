@@ -1,0 +1,159 @@
+{
+    "code": 200,
+    "data": [
+        {
+            "ba_id": "ba-110285",
+            "ba_level": "L4",
+            "ba_name": "ICMP Echo Request Ping",
+            "ba_zh_name": "ICMP回显请求Ping",
+            "id": "61bfea592aadd94c9b02e787",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-110292",
+            "ba_level": "L4",
+            "ba_name": "Host Discovery",
+            "ba_zh_name": "主机发现",
+            "id": "61bfea592aadd94c9b02e788",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-110294",
+            "ba_level": "L4",
+            "ba_name": "ICMP Address Mask Request",
+            "ba_zh_name": "ICMP地址掩码请求",
+            "id": "61bfea592aadd94c9b02e789",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-110296",
+            "ba_level": "L4",
+            "ba_name": "ICMP Information Request",
+            "ba_zh_name": "ICMP信息请求",
+            "id": "61bfea592aadd94c9b02e78a",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-110297",
+            "ba_level": "L4",
+            "ba_name": "TCP ACK Ping",
+            "ba_zh_name": "TCP确认Ping",
+            "id": "61bfea592aadd94c9b02e78b",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-110298",
+            "ba_level": "L4",
+            "ba_name": "UDP Ping  ",
+            "ba_zh_name": "UDP Ping",
+            "id": "61bfea592aadd94c9b02e78c",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-110299",
+            "ba_level": "L4",
+            "ba_name": "TCP SYN Ping",
+            "ba_zh_name": "TCP SYN Ping",
+            "id": "61bfea592aadd94c9b02e78d",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-110329",
+            "ba_level": "L4",
+            "ba_name": "ICMP Error Message Quoting Probe",
+            "ba_zh_name": "ICMP错误消息引用探测",
+            "id": "61bfea592aadd94c9b02e78e",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-110330",
+            "ba_level": "L4",
+            "ba_name": "ICMP Error Message Echoing Integrity Probe",
+            "ba_zh_name": "ICMP错误消息回显完整性探测",
+            "id": "61bfea592aadd94c9b02e78f",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-120034",
+            "ba_level": "L4",
+            "ba_name": "HTTP Response Splitting",
+            "ba_zh_name": "HTTP响应拆分",
+            "id": "61bfea592aadd94c9b02e790",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-120287",
+            "ba_level": "L4",
+            "ba_name": "TCP SYN Scan ",
+            "ba_zh_name": "TCP SYN扫描",
+            "id": "61bfea592aadd94c9b02e791",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-120293",
+            "ba_level": "L4",
+            "ba_name": "Traceroute Route Enumeration",
+            "ba_zh_name": "Traceroute路由枚举",
+            "id": "61bfea592aadd94c9b02e792",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-120295",
+            "ba_level": "L4",
+            "ba_name": "Timestamp Request",
+            "ba_zh_name": "时间戳请求",
+            "id": "61bfea592aadd94c9b02e793",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-120300",
+            "ba_level": "L4",
+            "ba_name": "Port Scanning",
+            "ba_zh_name": "端口扫描",
+            "id": "61bfea592aadd94c9b02e794",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-120301",
+            "ba_level": "L4",
+            "ba_name": "TCP Connect Scan",
+            "ba_zh_name": "TCP连接扫描",
+            "id": "61bfea592aadd94c9b02e795",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-120302",
+            "ba_level": "L4",
+            "ba_name": "TCP FIN Scan",
+            "ba_zh_name": "TCP FIN扫描",
+            "id": "61bfea592aadd94c9b02e796",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-120303",
+            "ba_level": "L4",
+            "ba_name": "TCP Xmas Scan",
+            "ba_zh_name": "TCP Xmas扫描",
+            "id": "61bfea592aadd94c9b02e797",
+            "parent_ba_id": "ba-100000",
+            "risk": null
+        }
+    ],
+    "msg": "查询基础攻击类型"
+}

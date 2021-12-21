@@ -1,5 +1,5 @@
 <template>
-    <!-- 武器 -->
+    <!-- 剧本弹窗 -->
     <div>
         <el-dialog title="创建剧本"
             v-model="dialogVisible"
@@ -29,7 +29,7 @@ import daramApi from "../../API/dramaApi"
 import { ElMessage, ElMessageBox } from 'element-plus'
 
 export default {
-    name: "dramaDialg",
+    name: "dramaDialog",
     // 父组件传递的参数
     props:['dialogVisible'],    // VUE2  VUE3都支持
     // 父组件传递的自定义事件

@@ -58,17 +58,16 @@
                         <h3>这里是请求参数</h3>
                         <!-- <div class="filter-type">
                             <el-input v-model="input1" placeholder="请输入" size="mini" clearable>
-                                <template #prepend>剧本名称</template>
+                                <template #prepend>{{ aa }}</template>
                             </el-input>
                         </div>
-                        <div class="filter-type">
-                            <el-input v-model="input1" placeholder="请输入" size="mini" clearable>
-                                <template #prepend>剧本状态</template>
-                            </el-input>
+                        <div class="filter-select">
+                            <span class="type">{{ bb }}</span>
+                            <el-select size="mini"></el-select>
                         </div>
 
                         <div class="filter-time">
-                            <span class="type">{{ aa }}</span>
+                            <span class="type">{{ cc }}</span>
                             <el-date-picker
                                 type="datetimerange"
                                 range-separator="To"
@@ -78,7 +77,7 @@
                             </el-date-picker>
                         </div>
                         <div class="filter-time">
-                            <span class="type">{{ bb }}</span>
+                            <span class="type">{{ dd }}</span>
                             <el-date-picker
                                 type="datetimerange"
                                 range-separator="To"
@@ -188,14 +187,18 @@ import { useRouter } from 'vue-router'
 import test from "../API/test.js"
 import daramApi from "../API/dramaApi"
 import auth from "../assets/js/auth.js"
-import Dialog from "../components/drama/dramaDialg.vue"
+import Dialog from "../components/drama/dramaDialog.vue"
+import tem from "../assets/json/dramaTempleteInfo.json"
+import stat from "../assets/json/statusInfo.json"
 export default {
     name: "Drama",
     components:{ Dialog },
     setup() {
 
-        let aa = '开始时间';
-        let bb = '最近发布时间';
+        let aa = '剧本名称';
+        let bb = '剧本状态';
+        let cc = '开始时间';
+        let dd = '最近发布时间';
         
         let router = useRouter();   //路由
         // 剧本总数，待发布，已发布的三个状态
@@ -246,6 +249,7 @@ export default {
         async function Info(){
             // 筛选参数     -->     页码  (每页)条数
             let res = await daramApi.getDramaInfo(dramaInfo.pageIndex,dramaInfo.pageSize);
+            // let res = tem;
             if(res.code == '200'){
                 // 将创建时间和发布时间由时间戳转为正常时间
                 res.data.list.forEach((d,i)=>{
@@ -259,8 +263,11 @@ export default {
         // 获得状态信息
         async function StatusInfo(){
             let res = await daramApi.getStatusInfo();
+            // let res = stat;  // json文件数据
             if(res.code == '200'){
-                dramaList = res.data;
+                dramaList.total = res.data.total;
+                dramaList.planning = res.data.planning;
+                dramaList.running = res.data.running;
             }
 
         }
@@ -367,6 +374,8 @@ export default {
         return {
             aa,
             bb,
+            cc,
+            dd,
 
             dramaList,
             titleList,
@@ -606,6 +615,7 @@ export default {
     }
     .drama-right{
         flex: 2;
+        max-width: 20%;
         background: white;
         .filter{
             width: 100%;

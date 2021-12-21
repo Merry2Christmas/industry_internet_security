@@ -210,6 +210,7 @@ export default {
             // 自定义react节点样式
             // https://antv-x6.gitee.io/zh/docs/tutorial/intermediate/custom-node/#%E4%BE%BF%E6%8D%B7%E6%96%B9%E6%B3%95%E4%BA%8C
 
+            
             // Graph.registerNode('custom-rect', {
             //     inherit: 'rect', // 继承自 Shape.Rect
             //     width: 258, // 默认宽度
@@ -230,151 +231,12 @@ export default {
             //     },
             // })
 
-            Graph.registerNode('custom-rect', {
-                inherit: 'rect', // 继承自 Shape.Rect
-                width: 258, // 默认宽度
-                height: 180, // 默认高度
-                markup:[
-                    // react节点样式
-                    {
-                        tagName: 'rect',
-                        selector: 'body',
-                    },
-                    // 图片样式
-                    {
-                        tagName: 'image',
-                        selector: 'avatar',
-                    },
-                    // 标题样式
-                    {
-                        tagName: 'text',
-                        selector: 'rank',
-                    },
-                    // 内容文本样式
-                    {
-                        tagName: 'text',
-                        selector: 'name',
-                    },
-                ],
-                attrs:{
-                    body:{
-                        fill: 'rgba(255, 255, 255, 1)', // 填充颜色
-                        stroke: '#DCDCDC',              // border颜色
-                        strokeWidth: 2,                 // border宽度
-                        rx: 5,                          // 圆角矩形
-                        ry: 5,                          // 圆角矩形
-                    },
-                    avatar: {
-                        // width: 168,
-                        // height: 168,
-                        width: 168,
-                        height: 168,
-                        refX: 8,
-                        refY: 6,
-                    },
-                    rank: {
-                        refX: 0.7,  // 距离左侧百分之七十
-                        refY: 0.15,  // 距离上方百分之十五
-                        fontFamily: 'Courier New',
-                        fontSize: 14,
-                        fontWeight: '800',
-                        // textAnchor: 'end',
-                        // textDecoration: 'underline',
-                        textAnchor: 'left', // 左对齐
-                    },
-                    name: {
-                        refX: 0.9,
-                        refY: 0.6,
-                        fontFamily: 'Courier New',
-                        fontSize: 14,
-                        // fontWeight: '800',
-                        textAnchor: 'end',
-                    },
-                }
-            },true)
-            
-            Graph.registerNode('custom-rect-end', {
-                inherit: 'rect', // 继承自 Shape.Rect
-                width: 104, // 默认宽度
-                height: 52, // 默认高度
-                markup:[
-                    // react节点样式
-                    {
-                        tagName: 'rect',
-                        selector: 'body',
-                    },
-                    // 图片样式
-                    {
-                        tagName: 'image',
-                        selector: 'avatar',
-                    },
-                    // 标题样式
-                    {
-                        tagName: 'text',
-                        selector: 'rank',
-                    },
-                    // 内容文本样式
-                    {
-                        tagName: 'text',
-                        selector: 'name',
-                    },
-                ],
-                attrs:{
-                    body:{
-                        fill: 'rgba(255, 255, 255, 1)', // 填充颜色
-                        stroke: '#DCDCDC',              // border颜色
-                        strokeWidth: 2,                 // border宽度
-                        rx: 5,                          // 圆角矩形
-                        ry: 5,                          // 圆角矩形
-                    },
-                    avatar: {
-                        width: 40,
-                        height: 40,
-                        refX: 8,
-                        refY: 6,
-                    },
-                    rank: {
-                        refX: 0.6,  // 距离左侧百分之六十
-                        refY: 0.5,  // 距离上方百分之三十
-                        fontFamily: 'Courier New',
-                        fontSize: 14,
-                        // textAnchor: 'end',
-                        fontWeight: '800',
-                        textAnchor: 'left', // 左对齐
-                        // textDecoration: 'underline',
-                    },
-                    name: {
-                        refX: 0.9,
-                        refY: 0.6,
-                        fontFamily: 'Courier New',
-                        fontSize: 14,
-                        fontWeight: '800',
-                        textAnchor: 'end',
-                    },
-                }
-            },true)
-            
-            // Graph.registerNode('custom-rect-start', {
-            //     inherit: 'rect', // 继承自 Shape.Rect
-            //     width: 104, // 默认宽度
-            //     height: 52, // 默认高度
-            //     attrs: {
-            //         body: {
-            //             fill: 'rgba(255, 255, 255, 1)', // 填充颜色
-            //             stroke: '#DCDCDC',              // border颜色
-            //             strokeWidth: 2,                 // border宽度
-            //             rx: 5,                          // 圆角矩形
-            //             ry: 5,                          // 圆角矩形
-            //         },
-            //         label: {
-            //             fontSize: 16,
-            //             refX: 10, // x 轴偏移，类似 css 中的 margin-left
-            //             textAnchor: 'left', // 左对齐
-            //         }
-            //     },
-            // })
+
+            // 使用html来渲染节点
+            // https://x6.antv.vision/zh/docs/tutorial/advanced/react#%E6%B8%B2%E6%9F%93-html-%E8%8A%82%E7%82%B9
 
 
+            // 添加一个detail属性，将要在节点展示的内容信息集合到detail属性上
             res.data.flow.nodes.forEach(d => {
                 if(d.nodeContentType != 'start' && d.nodeContentType != 'end'){
                     d.detail = d.stepNode.weaponObj.cmd || '--';
@@ -383,138 +245,123 @@ export default {
                         d.detail += ' -- ' + x.val;
                     })
                 }
-                
             })
-            //#region 
+
+
+            //#region
+
+            // 遍历数组，将对应节点添加到界面
             res.data.flow.nodes.forEach(item => {
                 
                 let react;      // 定义节点
-                // 判断该节点是否为起始点
-                graphData.nodes.push({
-                    id: item.nodeId, // String，可选，节点的唯一标识
-                })
+
+                // 判断该节点是起始节点还是流程节点，两种节点添加的html节点样式不同
                 if(item.nodeContentType == 'start' || item.nodeContentType == 'end'){
-                    
                     graph.addNode({
-                        id: item.nodeId, // String，可选，节点的唯一标识
-                        x: item.nodeX,       // Number，必选，节点位置的 x 值
+                        id: item.nodeId,
+                        x: item.nodeX,
                         y: item.nodeY,
-                        shape: 'custom-rect-end',
-                        attrs:{
-                            avatar: {
-                                'xlink:href': image,   // 图片地址
-                            },
-                            rank: {
-                                text: item.nodeContentType == 'start' ? '开始' : '结束', // String，节点标签
-                                // fill: 'red',
-                                wordSpacing: '500px',// 单词间距
-                                fontSize: 16,       // 字号
-                                letterSpacing: 0,   // 文字间距
-                                
-                            },
-                            name: {
-                                fill: 'green',
-                                fontSize: 13,
-                                fontFamily: 'Arial',
-                                letterSpacing: 0,
-                            },
-                        }
-                    })
-                }else{
-                    graph.addNode({
-                        id: item.nodeId, // String，可选，节点的唯一标识
-                        x: item.nodeX,       // Number，必选，节点位置的 x 值
-                        y: item.nodeY,
-                        shape: 'custom-rect',
-                        attrs:{
-                            avatar: {
-                                'xlink:href': image2,   // 图片地址
-                            },
-                            rank: {
-                                text: item.nodeContentType,
-                                // fill: 'red',
-                                wordSpacing: '500px',// 单词间距
-                                fontSize: 16,       // 字号
-                                letterSpacing: 0,   // 文字间距
-                                
-                            },
-                            name: {
-                                // text: '武器名称：'+item.nodeContentType,
-                                text: item.detail,
-                                fontFamily: 'Arial',
-                                letterSpacing: 0,
-                            },
+                        width: 104,
+                        height: 52,
+                        shape:'html',   // 节点为自己创建的html元素
+                        html(){
+                            const wrap = document.createElement('div');
+                            wrap.className = 'node-wrap-start';
+                            wrap.style.width = '100%'
+                            wrap.style.height = '100%'
+                            wrap.style.background = 'rgba(255, 255, 255, 1)'
+                            wrap.style.display = 'flex'
+                            wrap.style.justifyContent = 'center'
+                            wrap.style.alignItems = 'center'
+                            wrap.style.borderRadius = '5px'
+                            wrap.style.boxShadow = '0px 1px 4px 0px rgba(0, 59, 129, 0.15)'
+                            wrap.innerText = item.nodeContentType == 'start'?'开始':'结束'
+
+                            const wrapImg = document.createElement('div');
+                            wrapImg.className = 'node-wrap-img'
+                            wrap.appendChild(wrapImg)
+                            
+                            return wrap
                         }
                     })
                 }
-                
+                else{
+                    graph.addNode({
+                        id: item.nodeId,
+                        x: item.nodeX,
+                        y: item.nodeY,
+                        width: 258,
+                        height: 180,
+                        shape:'html',   // 节点为自己创建的html元素
+                        html(){
+                            const wrap = document.createElement('div');
+                            wrap.className = 'node-wrap';
+                            wrap.style.width = '100%'
+                            wrap.style.height = '100%'
+                            wrap.style.background = 'rgba(255, 255, 255, 1)'
+                            wrap.style.display = 'flex'
+                            wrap.style.justifyContent = 'center'
+                            wrap.style.alignItems = 'center'
+                            wrap.style.borderRadius = '5px'
+                            wrap.style.boxShadow = '0px 1px 4px 0px rgba(0, 59, 129, 0.15)'
+                            // wrap.innerText = item.nodeContentType
 
-                //#region 
-                // if(item.nodeContentType == 'start' || item.nodeContentType == 'end'){
-                //     // 创建节点
-                //     react = new Shape.Rect({
-                //         id: item.nodeId, // String，可选，节点的唯一标识
-                //         x: item.nodeX,       // Number，必选，节点位置的 x 值
-                //         y: item.nodeY,       // Number，必选，节点位置的 y 值
+                            // 在wrap里面添加头部标题
+                            const wrapHead = document.createElement('div');
+                            wrapHead.className = 'node-wrap-head'
+                            // 添加标题文本
+                            var textnode=document.createTextNode(item.nodeContentType);
+                            wrapHead.appendChild(textnode);
+                            wrap.appendChild(wrapHead)
 
-                //         width: 104,   // Number，可选，节点大小的 width 值
-                //         height: 52,  // Number，可选，节点大小的 height 值
-                //         label: item.nodeContentType == 'start' ? '开始' : '结束', // String，节点标签
-                //         // 节点样式
-                //         attrs: {
-                //             body: {
-                //                 fill: 'rgba(255, 255, 255, 1)', // 填充颜色
-                //                 stroke: '#DCDCDC',              // border颜色
-                //                 strokeWidth: 2,                 // border宽度
-                //                 rx: 5,                          // 圆角范围
-                //                 ry: 5,                          // 圆角范围
-                //             }
-                //         }
-                //     })
-                // }else{
-                //     // 创建节点
-                //     react = new Shape.Rect({
-                //         id: item.nodeId, // String，可选，节点的唯一标识
-                //         x: item.nodeX,       // Number，必选，节点位置的 x 值
-                //         y: item.nodeY,       // Number，必选，节点位置的 y 值
+                            // 在头部标题添加图片
+                            const wrapImgSmall = document.createElement('div');
+                            wrapImgSmall.className = 'node-wrap-img-small'
+                            wrapHead.appendChild(wrapImgSmall)
 
-                //         width: 258,   // Number，可选，节点大小的 width 值
-                //         height: 180,  // Number，可选，节点大小的 height 值
-                //         label: item.nodeContentType, // String，节点标签
-                //         attrs: {
-                //             body: {
-                //                 fill: 'rgba(255, 255, 255, 1)', // 填充颜色
-                //                 stroke: '#DCDCDC',              // border颜色
-                //                 strokeWidth: 2,                 // border宽度
-                //                 rx: 5,                          // 圆角范围
-                //                 ry: 5,                          // 圆角范围
-                //             },
-                //             label:{
-                //                 fontSize: 16,    // 文字大小
-                //             },
-                //             // line: {
-                //             //     fill: 'none',
-                //             //     strokeLinejoin: 'round',
-                //             //     strokeWidth: '2',
-                //             //     stroke: '#4b4a67',
-                //             //     sourceMarker: null,
-                //             //     targetMarker: null,
-                //             // },
-                //         }
-                //     })
-                // }
-                //#endregion
-                // 添加节点到graph里面去
+                            // 在wrap里面添加内容主体
+                            const wrapContent = document.createElement('div');
+                            wrapContent.className = 'node-wrap-content'
+                            wrap.appendChild(wrapContent)
 
-                graph.addNode({
-                    id: item.nodeId, // String，可选，节点的唯一标识
-                    x: item.nodeX,       // Number，必选，节点位置的 x 值
-                    y: item.nodeY,
-                    shape: 'custom-rect',
-                    label: item.nodeContentType, // label 继承于基类的自定义选项
-                })
-                
+                            // 在内容主体中添加名称文本
+                            const wrapContentName = document.createElement('div');
+                            wrapContentName.className = 'node-wrap-content-name'
+                            wrapContent.appendChild(wrapContentName)
+                            const hNmae = document.createElement('h3')
+                            hNmae.className = 'node-name';
+                            hNmae.innerText = '武器名称:';
+                            wrapContentName.appendChild(hNmae)
+
+                            const hDes = document.createElement('p')
+                            hDes.className = 'node-desc';
+                            hDes.innerText = item.nodeContentType;
+                            wrapContentName.appendChild(hDes)
+
+
+                            // 在内容主体中添加名称文本
+                            const wrapContentText = document.createElement('div');
+                            wrapContentText.className = 'node-wrap-content-text'
+                            wrapContent.appendChild(wrapContentText)
+                            const hOrder = document.createElement('h3')
+                            hOrder.className = 'node-oder';
+                            hOrder.innerText = '执行命令:';
+                            wrapContentText.appendChild(hOrder)
+
+                            const hDep = document.createElement('p')
+                            hDep.className = 'node-dep';
+                            hDep.innerText = item.detail;
+                            wrapContentText.appendChild(hDep)
+
+                            return wrap
+                        }
+                    })
+                }
             })
+            //#endregion
+
+            //#region 
+            // 遍历数组，将对应连线添加到界面
             res.data.flow.links.forEach(item => {
                 // 定义并创建连线
                 // #region 
@@ -540,11 +387,11 @@ export default {
                         }
                     },
                 })
-                // #endregion
                 // 添加线条到graph里面
                 graph.addEdge(edge)
             })
             //#endregion
+            
             graph.zoom(0.1)
             graph.centerContent();  // 将画布内容中心与视口中心对齐
         }
@@ -600,6 +447,121 @@ export default {
     },
 };
 </script>
+
+<style lang="less">
+.node-wrap-start{
+    text-indent: 32px;
+    position: relative;
+    display: inline-block;
+}
+.node-wrap{
+    position: relative;
+    display: inline-block;
+}
+.node-wrap-img{
+    position: absolute;
+    left: 16px;
+    display: inline-block;
+    width: 30px;
+    height: 16px;
+    background-image: url("/src/assets/image/script-maage/start-node.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+.node-wrap-head{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 258px;
+    height: 39px;
+    border-bottom: 1px solid #EEEEEE;
+    line-height: 40px;
+    text-align: left;
+    text-indent: 40px;
+    .node-wrap-img-small{
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        // background-image: url("/src/assets/image/script-maage/scanning.png");
+        background-image: url('https://img2.baidu.com/it/u=2978608128,97714912&fm=26&fmt=auto');
+        background-size: contain;
+        background-repeat: no-repeat;
+        vertical-align: middle;
+    }
+}
+.node-wrap-content{
+    position: absolute;
+    top: 40px;
+    left: 0;
+    display: inline-block;
+    width: 258px;
+    height: 140px;
+    .node-wrap-content-name{
+        width: 258px;
+        height: 50px;
+        padding: 5px 10px;
+        box-sizing: border-box;
+        .node-name{
+            font-size: 14px;
+            font-weight: 400;
+            color: #1A1A1A;
+            line-height: 21px;
+            text-align: left;
+        }
+        .node-desc{
+            width: 100%;
+            font-size: 14px;
+            font-weight: 400;
+            color: #999999;
+            line-height: 21px;
+            text-align: left;
+            margin: 0;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+    .node-wrap-content-text{
+        width: 258px;
+        height: 80px;
+        padding: 5px 10px;
+        box-sizing: border-box;
+        .node-oder{
+            font-size: 14px;
+            font-weight: 400;
+            color: #1A1A1A;
+            line-height: 21px;
+            text-align: left;
+        }
+        .node-dep{
+            width: 100%;
+            font-size: 14px;
+            font-weight: 400;
+            color: #999999;
+            line-height: 21px;
+            text-align: left;
+            margin: 0;
+
+            // overflow: hidden;
+            // text-overflow: ellipsis;
+            // white-space: nowrap;
+
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+
+        }
+    }
+}
+
+</style>
 
 <style lang="less" scoped>
 .drama-run{
@@ -688,6 +650,10 @@ export default {
                         .save{
                             background-image: url(../../assets/image/script-maage/save.png);
                         }
+                        .refresh{
+                            background-image: url(../../assets/image/script-maage/rest-status.png);
+                            background-size: cover;
+                        }
                         .save-template{
                             background-image: url(../../assets/image/script-maage/save-model.png);
                         }
@@ -721,6 +687,7 @@ export default {
                 width: 100%;
                 height: calc(100% - 50px);
                 // height: calc(100% - 50px - 308px);
+                
             }
             .drama-run-log{
                 position: absolute;

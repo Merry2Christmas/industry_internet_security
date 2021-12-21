@@ -27,6 +27,25 @@
         overflow-x: hidden !important;
     }
 }
+.return{
+    position: relative;
+    >div{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50px;
+        height: 32px;
+        background: #FFFFFF;
+        box-shadow: 0px 1px 4px 0px rgba(0, 59, 129, 0.15);
+        border-radius: 16px;
+        display: inline-block;
+        cursor: pointer;
+    }
+    h3{
+        text-align: left;
+        text-indent: 60px;
+    }
+}
 
 // 设置带有小蓝条的h3标题
 ._title{
@@ -85,6 +104,7 @@
 // element 的dialog弹窗通用样式
 .el-dialog.common-dialog{
     border-radius: 6px;
+
     .el-dialog__header {
         position: relative;
         padding: 20px 16px;
@@ -142,7 +162,7 @@
                     background: #F0F0F0;
                     border-radius: 3px;
                 }
-            }c
+            }
 
             .el-date-editor {
                 width: 100%;
@@ -164,7 +184,7 @@
     }
 }
 
-// 筛选项 --> 用于input和select
+// 筛选项 --> 用于input
 .filter-type{
     margin-right: 10px;
     .el-input-group__prepend{
@@ -172,12 +192,42 @@
         color: #1A1A1A;
     }
 }
-// 筛选项 --> 用于日期时间筛选器
-.filter-time{
-    width: 300px;
+// 筛选项 --> 用于select
+.filter-select{
+    margin-right: 10px;
     display: flex;
     align-items: center;
+    .type{
+        min-width: 60px;
+        display: inline-block;
+        font-size: 12px;
+        padding: 3px 6px;
+        height: 20px;
+        line-height: 20px;
+        background-color: rgb(245,247,250);
+        border: 1px solid rgb(220,223,230);
+        border-right: none;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        cursor: not-allowed;
+    }
+    .el-input__inner {
+        padding: 0;
+        text-align: center;
+        box-sizing: border-box;
+        width: 100%;
+        height: 26px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: #FAFAFA;
+        color: #1A1A1A;
+    }
+}
+// 筛选项 --> 用于日期时间筛选器
+.filter-time{
     margin-right: 10px;
+    display: flex;
+    align-items: center;
     .type{
         display: inline-block;
         font-size: 12px;

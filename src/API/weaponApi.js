@@ -10,4 +10,8 @@ export default{
     async getWeaponInfo(pageIndex,pageSize, param){
         return await get(`v1/iist/weapon/pageList?pageIndex=${pageIndex}&pageSize=${pageSize}`)
     },
+    // 获得剧本详情信息    -->   参数： 该武器id
+    async getWeaponDetail(id){
+        return await get(`/v1/iist/weapon/${id}`)
+    }
 }

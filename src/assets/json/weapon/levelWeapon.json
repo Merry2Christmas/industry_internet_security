@@ -1,0 +1,42 @@
+{
+    "code": 200,
+    "data": [
+        {
+            "ba_id": "ba-100000",
+            "ba_level": "L1",
+            "ba_name": "Scanning probe",
+            "ba_zh_name": "扫描探测",
+            "id": "61c012932aadd94c9b02e9d1",
+            "parent_ba_id": "ba-000000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-200000",
+            "ba_level": "L1",
+            "ba_name": "Attack the breakthrough",
+            "ba_zh_name": "攻击突破",
+            "id": "61c012932aadd94c9b02e9d2",
+            "parent_ba_id": "ba-000000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-300000",
+            "ba_level": "L1",
+            "ba_name": "remote control",
+            "ba_zh_name": "远程控制",
+            "id": "61c012932aadd94c9b02e9d3",
+            "parent_ba_id": "ba-000000",
+            "risk": null
+        },
+        {
+            "ba_id": "ba-400000",
+            "ba_level": "L1",
+            "ba_name": "Steal to use",
+            "ba_zh_name": "窃取利用",
+            "id": "61c012932aadd94c9b02e9d4",
+            "parent_ba_id": "ba-000000",
+            "risk": null
+        }
+    ],
+    "msg": "查询基础攻击类型"
+}
