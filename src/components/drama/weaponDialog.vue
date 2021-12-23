@@ -53,19 +53,28 @@
                 <el-form label-position="left" label-width="92px" ref="ruleForm2" :model="weaponInfo" :rules="rules" v-else>
                     <el-form-item label="武器源码" prop="fileName"><el-input v-model="fileName" placeholder=".py格式文件，文件大小不能超过5M" clearable></el-input></el-form-item>
                     <el-form-item label="执行命令" prop="cmd"><el-input v-model="cmd" placeholder="输入" type="textarea" :rows="2" clearable></el-input></el-form-item>
-                    <el-row class="weapon-param">
+                    <el-row class="weapon-param weapon-param-title">
                         <el-col :span="6">参数名称</el-col>
                         <el-col :span="5">是否必填</el-col>
                         <el-col :span="5">默认值</el-col>
-                        <el-col :span="6">说明</el-col>
-                        <!-- <el-col :span="2">--</el-col> -->
+                        <el-col :span="8">说明</el-col>
                     </el-row>
-                    <el-row class="weapon-param">
+                    <el-row class="weapon-param" v-for="(item,index) in paramList" :key="index">
                         <el-col :span="6"><el-input v-model="params.name" placeholder="输入" clearable></el-input></el-col>
                         <el-col :span="5"><el-input v-model="params.required" placeholder="输入" clearable></el-input></el-col>
                         <el-col :span="5"><el-input v-model="params.val" placeholder="输入" clearable></el-input></el-col>
-                        <el-col :span="6"><el-input v-model="params.desc" placeholder="输入" clearable></el-input></el-col>
-                        <el-col :span="2">X</el-col>
+                        <el-col :span="7"><el-input v-model="params.desc" placeholder="输入" clearable></el-input></el-col>
+                        <el-col :span="1">
+                            <el-icon :size="16" color="#DDDDDD">
+                                <CircleCloseFilled @click="minusOne(item,index)"></CircleCloseFilled>
+                            </el-icon>
+                        </el-col>
+                    </el-row>
+                    <el-row class="weapon-param-add">
+                        <el-icon :size="16" color="#25A4F4">
+                            <CirclePlusFilled @click="plusOne"></CirclePlusFilled>
+                        </el-icon>
+                        <span @click="plusOne">添加</span>
                     </el-row>
                 </el-form>
             </div>
@@ -87,6 +96,7 @@
 <script>
 import { ref, reactive, toRef, toRefs, toRaw } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus'
+import { CircleCloseFilled, CirclePlusFilled } from '@element-plus/icons'
 
 
 import levelWeapon from "../../assets/json/weapon/levelWeapon.json"   // 一级类别json文件
@@ -95,6 +105,11 @@ export default {
     name:"weaponDialog",
     // 父组件传递的参数
     props:["dialogVisible"],
+    components:{
+        //element puls icon 图标
+        CircleCloseFilled,
+        CirclePlusFilled
+    },
     // 父组件传递的自定义事件
     // emits:['hello'],
     setup(props,context){
@@ -143,6 +158,8 @@ export default {
             // 说明
         })
         let activeStep = ref(0);  // 激活的步骤
+        
+        let paramList = reactive([1,2,3]);
 
 
         //#region 一级类型下拉选项
@@ -244,6 +261,9 @@ export default {
             // 进入下一步
             activeStep.value = 1;
 
+            // 新增武器数据
+            context.emit('Info');       // 刷新界面
+
             // ruleForm.value.validate(valid => {
             //     if (valid) {
             //         // 进入下一步
@@ -264,6 +284,14 @@ export default {
             //     }
             // })
         }
+        // 在编辑的时候为删除一条信息清空位置
+        function minusOne(item,index){
+            paramList.splice(index,1);
+        }
+        // 在编辑的时候为添加一条新信息展开位置
+        function plusOne(){
+            paramList.push({})
+        }
 
         return{
             activeStep,
@@ -277,9 +305,12 @@ export default {
             plateOpt,
             needOpt,
             userOpt,
+            paramList,
 
 
             // 方法
+            minusOne,
+            plusOne,
             handleClose,
             handleClose2,
             handleClose3
@@ -316,6 +347,24 @@ export default {
             }
         }
     }
+    .weapon-param-title{
+        background-color:  #F8F8F8;
+        border-radius: 3px;
+        margin-left: 10px;
+        box-sizing: border-box;
+    }
+    .weapon-param-add{
+        height: 25px;
+        text-indent: 10px;
+        color: #25A4F4;
+        .el-icon{
+            line-height: 25px;
+        }
+        span{
+            margin-left: 5px;
+            cursor: pointer;
+        }
+    }
     .weapon-param{
         padding-left: 10px;
         box-sizing: border-box;
@@ -324,6 +373,8 @@ export default {
         font-weight: bold;
         color: #1A1A1A;
         line-height: 33px;
+        margin-bottom: 4px;
+        
         .el-col{
             padding-right: 5px;
             box-sizing: border-box;
@@ -348,11 +399,11 @@ export default {
             }
         }
         .el-textarea{
-            height: 52px;
+            height: 60px;
             .el-textarea__inner{
-                height: 52px !important;
-                min-height: 52px !important;
-                max-height: 52px !important;
+                height: 60px !important;
+                min-height: 60px !important;
+                max-height: 60px !important;
             }
         }
     }   

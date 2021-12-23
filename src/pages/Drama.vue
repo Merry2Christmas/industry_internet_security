@@ -188,8 +188,8 @@ import test from "../API/test.js"
 import daramApi from "../API/dramaApi"
 import auth from "../assets/js/auth.js"
 import Dialog from "../components/drama/dramaDialog.vue"
-import tem from "../assets/json/dramaTempleteInfo.json"
-import stat from "../assets/json/statusInfo.json"
+import tem from "../assets/json/drama/dramaTempleteInfo.json"
+import stat from "../assets/json/drama/statusInfo.json"
 export default {
     name: "Drama",
     components:{ Dialog },

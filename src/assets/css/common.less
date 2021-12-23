@@ -27,9 +27,11 @@
         overflow-x: hidden !important;
     }
 }
+
+// 返回上一级样式
 .return{
     position: relative;
-    >div{
+    .el-icon{
         position: absolute;
         top: 0;
         left: 0;
@@ -40,11 +42,21 @@
         border-radius: 16px;
         display: inline-block;
         cursor: pointer;
+
+        font-size: 30px;
+        font-weight: bold;
+        color: rgba(0, 130, 255, 1);
     }
     h3{
         text-align: left;
         text-indent: 60px;
     }
+}
+
+// 所有的element Plus 图标居中
+.el-icon{
+    cursor: pointer;
+    vertical-align: middle;
 }
 
 // 设置带有小蓝条的h3标题

@@ -90,7 +90,7 @@
                                 :content="item.payloadName||'--'"
                                 placement="top"
                                 :show-after="800">
-                                <el-col :span="4" class="skip" @click="skip">{{ item.payloadName||'--' }}</el-col>
+                                <el-col :span="4" class="skip" @click="weaponDetail(item.id)">{{ item.payloadName||'--' }}</el-col>
                             </el-tooltip>
                             
                             <el-tooltip
@@ -133,7 +133,7 @@
                     <el-empty description="暂无武器库列表数据"></el-empty>
                 </div>
                 <div class="page" v-if="contentList.length">
-                    <el-pagination background layout="prev, pager, next" :total="total"
+                    <el-pagination background layout="total, prev, pager, next" :total="total"
                      v-model:currentPage="currentPage"
                      @size-change="handleSizeChange" 
                      @current-change="handleCurrentChange"></el-pagination>
@@ -142,7 +142,7 @@
         </div>
 
         <!-- : 是传递参数    @是传递父级的方法 -->
-        <Dialog :dialogVisible="dialogVisible" @show="showDialog" @Info="Info"></Dialog>
+        <Dialog :dialogVisible="dialogVisible" @show="showDialog" @Info="WeaponInfo"></Dialog>
     </div>
 </template>
 
@@ -326,6 +326,7 @@ export default {
             addWeapon,
             weaponDetail,
             
+            WeaponInfo,
             handleSizeChange,
             handleCurrentChange,
             skip,

@@ -1,0 +1,32 @@
+{
+    "id": "729e65a4b1b234158a5fd37a61f06b5edb8b1ca7fc940bc837bad86c3538c793",
+    "payloadId": null,
+    "payloadName": "Supervisor绕过访问控制列表武器",
+    "payloadType": "访问控制列表访问功能未被正确限制",
+    "topType": "扫描探测",
+    "vulnerabilityNo": "CVE-2017-11610",
+    "threatLevel": "low",
+    "difficulty": "easy",
+    "platform": [ "linux" ],
+    "appName": "Supervisord",
+    "lang": "python",
+    "permission": [ "administrator", "users" ],
+    "appVersion": "3.3.2",
+    "refUrl": null,
+    "desc": "Supervisord在配置了Web接口后，服务器会启动一个XMLRPC服务器，端口号为9001，利用本漏洞，在获取接口访问权限后，远程攻击者可利用发送一段精心构造的请求，导致可在服务器执行任意代码。",
+    "payloadFile": "/opt/upload/20211220/1639983165393/Supervisor绕过访问控制列表武器.zip",
+    "fileName": "Supervisor绕过访问控制列表武器.zip",
+    "cmd": "python3 Supervisor绕过访问控制列表武器.py",
+    "params": [ { "id": "1639980826644",
+        "name": "ip",
+        "val": "",
+        "desc": "目标ip",
+        "required": true
+        },
+        { "id": "1639980826645", "name": "port", "val": "9001", "desc": "目标端口", "required": true },
+        { "id": "1639981556189", "name": "shell", "val": "x", "desc": "建立shell连接", "required": true },
+        { "id": "1639981604469", "name": "lip", "val": "", "desc": "监听ip", "required": true },
+        { "id": "1639981750077", "name": "lport", "val": "", "desc": "监听端口", "required": true }
+    ],
+    "payloadTypeId": "61bfea592aadd94c9b02e7bd", "topTypeId": "61c012932aadd94c9b02e9d1"
+}

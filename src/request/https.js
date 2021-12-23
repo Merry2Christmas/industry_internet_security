@@ -10,10 +10,8 @@ if (process.env.NODE_ENV == 'development') { //开发环境
 } else if (process.env.NODE_ENV == 'debug') {
   axios.defaults.baseURL = '';
 } else if (process.env.NODE_ENV == 'production') {
-  axios.defaults.baseURL = 'http://10.1.16.238:80'; //线上地址
+  axios.defaults.baseURL = 'http://10.0.4.160:9091'; //线上地址
 }
-
-// console.log(axios.defaults.baseURL);
 
 // 请求超时时间
 axios.defaults.timeout = 10000;
@@ -149,6 +147,28 @@ export function postJson(url, params) {
 }
 
 /** 
+ * post方法，对应post请求 
+ * @param {String} url [请求的url地址] 
+ * @param {Object} params [请求时携带的参数] 
+ */
+export function postZip(url, params) {
+  return new Promise((resolve, reject) => {
+    axios.post(url, params, {
+        headers: {
+          'Content-Type': 'application/json; application/octet-stream'
+        },
+        responseType: 'blob'
+      })
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        reject(err.data)
+      })
+  });
+}
+
+/** 
  * post方法，对应post请求，用于传输文件
  * @param {String} url [请求的url地址] 
  * @param {Object} params [请求时携带的参数] 
@@ -191,9 +211,8 @@ export function put(url, params) {
   })
 }
 
-
 /** 
- * 参数放在路径里面
+ * * 参数放在路径里面
  * delete方法，对应delete请求 
  * @param {String} url [请求的url地址] 
  * @param {Object} params [请求时携带的参数] 
