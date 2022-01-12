@@ -99,8 +99,8 @@
                         <div class="content-list" v-if="contentList.length">
                             <el-scrollbar style="height:100%" class="scrollbar-for">
                                 <el-row v-for="(item,index) in contentList" :key="index">
-                                    <el-col :span="1">{{ index+1+(pageIndex-1)*pageSize }}</el-col>
-                                    <el-col :span="5" class="skip" @click="skip(item.status,item._id)">{{ item.name || '--' }} ></el-col>
+                                    <el-col :span="2">{{ index+1+(pageIndex-1)*pageSize }}</el-col>
+                                    <el-col :span="4" class="skip" @click="skip(item.status,item._id)">{{ item.name || '--' }} ></el-col>
                                     <el-col :span="5">{{ item.createTime || '--' }}</el-col>
                                     <el-col :span="5">{{ item.publishTime || '--' }}</el-col>
                                     <el-col :span="2">{{ item.runNum || '0' }}</el-col>
@@ -210,8 +210,8 @@ export default {
 
         // 剧本列表的标题头部数据
         const titleList = reactive([
-            { name:"序号", width: 1 },
-            { name:"剧本名称", width: 5 },
+            { name:"序号", width: 2 },
+            { name:"剧本名称", width: 4 },
             { name:"创建时间", width: 5 },
             { name:"最近发布时间", width: 5 },
             { name:"发布次数", width: 2 },
