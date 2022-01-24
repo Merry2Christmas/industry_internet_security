@@ -10,21 +10,21 @@
                     <div class="dramaImg total"></div>
                     <div class="dramaData">
                         <p>剧本总数</p>
-                        <h3>{{ dramaList.total }}</h3>
+                        <h3 class="blue">{{ dramaList.total }}</h3>
                     </div>
                 </li>
                 <li class="standard-box">
                     <div class="dramaImg planning"></div>
                     <div class="dramaData">
                         <p>待发布</p>
-                        <h3>{{ dramaList.planning }}</h3>
+                        <h3 class="gray">{{ dramaList.planning }}</h3>
                     </div>
                 </li>
                 <li class="standard-box">
                     <div class="dramaImg running"></div>
                     <div class="dramaData">
                         <p>已发布</p>
-                        <h3>{{ dramaList.running }}</h3>
+                        <h3 class="green">{{ dramaList.running }}</h3>
                     </div>
                 </li>
 
@@ -35,19 +35,19 @@
                         <h3>剧本列表<span>共{{ total }}条</span></h3>
 
                         <div class="icon">
-                            <el-tooltip
+                            <!-- <el-tooltip
                                 class="item"
-                                effect="dark"
+                                effect="light"
                                 content="删除剧本"
-                                placement="top"
+                                placement="top-start"
                                 :show-after="800">
                                 <div class="del"></div>
-                            </el-tooltip>
+                            </el-tooltip> -->
                             <el-tooltip
                                 class="item"
-                                effect="dark"
+                                effect="light"
                                 content="新增剧本"
-                                placement="top"
+                                placement="top-start"
                                 :show-after="800">
                                 <div class="add" @click="addDrama"></div>
                             </el-tooltip>
@@ -91,6 +91,41 @@
                             <el-button @click="FilterNone" size="mini">清空</el-button>
                         </div> -->
 
+
+                        <!-- <div class="filter-type">
+                            <el-input v-model="aa" :disabled="true" class="type1"></el-input>
+                            <el-input class="type2"></el-input>
+                        </div>
+
+                        <div class="filter-type">
+                            <el-input v-model="bb" :disabled="true" class="type1"></el-input>
+                            <el-select class="type2"></el-select>
+                        </div>
+
+                        <div class="filter-time">
+                            <el-input v-model="cc" :disabled="true" class="type1"></el-input>
+                            <el-date-picker
+                                class="type2"
+                                type="datetimerange"
+                                range-separator="至"
+                                start-placeholder="开始日期"
+                                end-placeholder="结束日期"
+                                :picker-options="pickerOptionsEnd">
+                        </el-date-picker>
+                        </div>
+
+                        <div class="filter-time">
+                            <el-input v-model="dd" :disabled="true" class="type1"></el-input>
+                            <el-date-picker
+                                class="type2"
+                                type="datetimerange"
+                                range-separator="至"
+                                start-placeholder="开始日期"
+                                end-placeholder="结束日期"
+                                :picker-options="pickerOptionsEnd">
+                            </el-date-picker>
+                        </div> -->
+
                     </div>
                     <div class="_list">
                         <el-row class="list-title">
@@ -108,17 +143,25 @@
                                     <el-col :span="3" class="operate">
                                         <el-tooltip
                                             class="item"
-                                            effect="dark"
+                                            effect="light"
                                             content="删除剧本"
-                                            placement="top"
+                                            placement="top-start"
                                             :show-after="800">
                                             <div class="del" @click="delDrama(item._id)"></div>
                                         </el-tooltip>
                                         <el-tooltip
                                             class="item"
-                                            effect="dark"
+                                            effect="light"
+                                            content="修改剧本"
+                                            placement="top-start"
+                                            :show-after="800">
+                                            <div class="edit" @click="editDrama(item)"></div>
+                                        </el-tooltip>
+                                        <el-tooltip
+                                            class="item"
+                                            effect="light"
                                             content="重新编排"
-                                            placement="top"
+                                            placement="top-start"
                                             :show-after="800"
                                             v-if="item.status">
                                             <div class="refresh" @click="reFresh"></div>
@@ -135,10 +178,13 @@
                 </div>
                 
                 <div class="page"  v-if="contentList.length">
-                    <el-pagination background layout="total, prev, pager, next" :total="total"
-                    v-model:currentPage="currentPage"
-                    @size-change="handleSizeChange" 
-                    @current-change="handleCurrentChange"></el-pagination>
+                    <el-pagination background layout="total, prev, pager, next" 
+                        :total="total" 
+                        :page-size="pageSize"
+                        v-model:currentPage="pageIndex"
+                        @size-change="handleSizeChange" 
+                        @current-change="handleCurrentChange">
+                    </el-pagination>
                 </div>
             </div>
             
@@ -236,10 +282,9 @@ export default {
         // 剧本列表相关的参数信息
         let dramaInfo = reactive({
             pageIndex: 1,   // 页码
-            pageSize: 10,   // 每页条数
+            pageSize: 15,   // 每页条数(当前页)
             param: '',      // 筛选参数
             total: 0,       // 总条数
-            currentPage:1,  // 当前页
             search:'',      // 搜索内容
             contentList:[],    // 剧本列表内容数据
             templetList:[],    // 剧本模板内容数据
@@ -316,6 +361,7 @@ export default {
                 {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
+                    customClass: "common-box",
                     type: 'warning',
                 }
             ).then(async () => {
@@ -334,6 +380,10 @@ export default {
                     message: '取消删除',
                 })
             })
+        }
+        // 编辑剧本
+        const editDrama = (param) => {
+            console.log("编辑剧本",param);
         }
         // 更新剧本
         const reFresh = () => {
@@ -389,6 +439,7 @@ export default {
             Filter,
             FilterNone,
             addDrama,
+            editDrama,
             delDrama,
             reFresh,
             skip,
@@ -480,12 +531,20 @@ export default {
                     h3{
                         font-size: 30px;
                         font-weight: bold;
-                        color: #0082FF;
                         line-height: 25px;
 
                         overflow: hidden;
                         white-space: nowrap;
                         text-overflow: ellipsis;
+                    }
+                    .blue{
+                        color: #0082FF;
+                    }
+                    .gray{
+                        color: #858585;
+                    }
+                    .green{
+                        color: #41c3b3;
                     }
                 }
             }
@@ -580,20 +639,25 @@ export default {
                                 >div{
                                     float: left;
                                     margin-top: 10px;
+                                    margin-right: 20px;
                                     flex: 1;
                                     width: 22px;
                                     height: 22px;
                                     background-repeat: no-repeat;
+                                    background-size: contain;
                                     vertical-align: middle;
                                     cursor: pointer;
                                 }
                                 .del{
+                                    
                                     background-image: url(../assets/image/script-maage/red-del.png);
                                 }
+                                .edit{
+                                    background-image: url(../assets/image/script-maage/edit.png);
+                                }
                                 .refresh{
-                                    margin-left: 20px;
+                                    margin-right: 0;
                                     background-image: url(../assets/image/script-maage/rest-status.png);
-                                    background-size: contain;
                                 }
                             }
                         }

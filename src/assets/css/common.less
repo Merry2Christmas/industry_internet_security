@@ -1,3 +1,18 @@
+/*
+*   组件已有样式的修改  -------------->
+*   面包屑样式
+*   滚动条 scrollbar-for
+*   el-icon 图标居中
+*   common-box 消息弹窗框样式
+*
+*   新编写的样式        -------------->
+*   所有页面的包裹样式 standard-box
+*   _title 设置带有小蓝条的h3标题
+*   return 返回上一级样式
+*   common-dialog 通用弹窗样式
+*   filter-type filter-time filter-button  筛选样式
+*/
+
 // 设置面包屑样式
 .el-breadcrumb{
     width: 100%;
@@ -196,6 +211,28 @@
     }
 }
 
+.el-message-box.common-box{
+    width: 300px;
+    .el-message-box__title{
+        font-weight: bold;
+    }
+    .el-message-box__btns{
+        .el-button:first-of-type{
+            background-color: #c3c3c3;
+            border: none;
+            color: white;
+        }
+        .el-button:last-of-type{
+            background-color: #ff5757;
+            border: none;
+            color: white;
+        }
+    }
+}
+
+// ------------------------------ 筛选项 样式一 ------------------------------
+
+
 // // 筛选项 --> 用于input
 // .filter-type{
 //     margin-right: 10px;
@@ -285,91 +322,135 @@
 // }
 
 
+// ------------------------------ 筛选项 样式二 ------------------------------
 
-// 筛选项 --> 用于input
-.filter-type{
-    margin-right: 10px;
-    .el-input-group__prepend{
-        padding: 0 10px;
-        color: #1A1A1A;
-    }
-}
-// 筛选项 --> 用于select
-.filter-select{
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    .type{
-        min-width: 60px;
-        display: inline-block;
-        font-size: 12px;
-        padding: 3px 6px;
-        height: 20px;
-        line-height: 20px;
-        background-color: rgb(245,247,250);
-        border: 1px solid rgb(220,223,230);
-        border-right: none;
-        border-top-left-radius: 3px;
-        border-bottom-left-radius: 3px;
-        cursor: not-allowed;
-    }
-    .el-input__inner {
-        padding: 0;
-        text-align: center;
-        box-sizing: border-box;
-        width: 100%;
-        height: 26px;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        background-color: #FAFAFA;
-        color: #1A1A1A;
-    }
-}
-// 筛选项 --> 用于日期时间筛选器
-.filter-time{
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    .type{
-        display: inline-block;
-        font-size: 12px;
-        padding: 3px 6px;
-        height: 20px;
-        line-height: 20px;
-        background-color: rgb(245,247,250);
-        border: 1px solid rgb(220,223,230);
-        border-right: none;
-        border-top-left-radius: 3px;
-        border-bottom-left-radius: 3px;
-        cursor: not-allowed;
-    }
-    .el-range-editor--mini.el-input__inner{
-        flex: 1;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-}
-// 筛选按钮
-.filter-button {
-    width: 150px;
-    min-width: 100px;
-    display: flex;
+// .filter-type {
+//     display: inline-block;
+//     width: 250px;
+//     min-width: 200px;
+//     height: 26px;
+//     margin-right: 2px;
 
-    .el-button {
-        width: 48%;
-        height: 26px;
-        // line-height: 0;
-        margin-left: 2%;
-        display: flex;
-        justify-content: center;
-    }
+//     .type1 {
+//         width: 30.4%;
+//         display: inline-block;
 
-    .el-button:first-of-type {
-        background: rgba(0, 130, 255, 1);
-    }
+//         .el-input__inner {
+//             padding: 0;
+//             text-align: center;
+//             box-sizing: border-box;
+//             width: 100%;
+//             height: 26px;
+//             border-right: none;
+//             border-top-right-radius: 0;
+//             border-bottom-right-radius: 0;
+//             background-color: #FAFAFA;
+//             color: #1A1A1A;
+//         }
+//     }
 
-    .el-button:last-of-type {
-        border-color: rgba(0, 130, 255, 1);
-        color: rgba(0, 130, 255, 1);
-    }
-}
+//     .type2 {
+//         width: 66.6%;
+//         display: inline-block;
+
+//         .el-input__inner {
+//             width: 100%;
+//             height: 26px;
+//             border-top-left-radius: 0;
+//             border-bottom-left-radius: 0;
+//             background-color: #FAFAFA;
+//             color: #1A1A1A;
+//         }
+
+//         .el-input__icon {
+//             line-height: 25px;
+//         }
+//     }
+
+// }
+
+// .filter-time {
+//     width: 455px !important;
+//     min-width: 255px;
+//     margin-right: 5px;
+//     display: flex;
+//     align-items: center;
+
+//     .type1 {
+//         width: 20% !important;
+//         display: inline-block;
+
+//         .el-input__inner {
+//             padding: 0;
+//             text-align: center;
+//             box-sizing: border-box;
+//             width: 100%;
+//             height: 26px;
+//             border-right: none;
+//             border-top-right-radius: 0;
+//             border-bottom-right-radius: 0;
+//             background-color: #FAFAFA;
+//             color: #1A1A1A;
+//         }
+//     }
+
+//     .type2 {
+//         width: 80% !important;
+//         height: 26px;
+//         vertical-align: top;
+//         display: inline-block;
+//         border-top-left-radius: 0;
+//         border-bottom-left-radius: 0;
+
+//         .el-input__inner {
+//             position: relative;
+//             width: 100%;
+//             height: 26px;
+//             background-color: #FAFAFA;
+//             color: #1A1A1A;
+//         }
+
+//         .el-range-input {
+//             line-height: 25px;
+//             vertical-align: top;
+//         }
+
+//         .el-input__icon,
+//         .el-range-separator {
+//             line-height: 20px;
+//             vertical-align: top;
+//         }
+
+//         .el-range__close-icon {
+//             position: absolute;
+//             top: 2px;
+//             right: 0px;
+
+//         }
+
+//     }
+// }
+
+// .filter-button {
+//     width: 150px;
+//     min-width: 100px;
+//     display: flex;
+
+//     .el-button {
+//         width: 48%;
+//         height: 26px;
+//         line-height: 1;
+//         margin-left: 2%;
+//         display: flex;
+//         justify-content: center;
+//     }
+
+//     .el-button:first-of-type {
+//         background: rgba(0, 130, 255, 1);
+//     }
+
+//     .el-button:last-of-type {
+//         border-color: rgba(0, 130, 255, 1);
+//         color: rgba(0, 130, 255, 1);
+//     }
+// }

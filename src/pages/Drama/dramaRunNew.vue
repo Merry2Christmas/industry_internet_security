@@ -26,25 +26,25 @@
                         <div class="icon" v-if="activeId == '0'">
                             <el-tooltip
                                 class="item"
-                                effect="dark"
+                                effect="light"
                                 content="发布"
-                                placement="top"
+                                placement="top-start"
                                 :show-after="800">
                                 <div class="release" @click="release"></div>
                             </el-tooltip>
                             <el-tooltip
                                 class="item"
-                                effect="dark"
+                                effect="light"
                                 content="保存"
-                                placement="top"
+                                placement="top-start"
                                 :show-after="800">
                                 <div class="save" @click="save"></div>
                             </el-tooltip>
                             <el-tooltip
                                 class="item"
-                                effect="dark"
+                                effect="light"
                                 content="保存模板"
-                                placement="top"
+                                placement="top-start"
                                 :show-after="800">
                                 <div class="save-template" @click="saveTemplate"></div>
                             </el-tooltip>
@@ -53,17 +53,17 @@
                         <div class="icon" v-else>
                             <el-tooltip
                                 class="item"
-                                effect="dark"
+                                effect="light"
                                 content="重新编排"
-                                placement="top"
+                                placement="top-start"
                                 :show-after="800">
                                 <div class="refresh" @click="refresh"></div>
                             </el-tooltip>
                             <el-tooltip
                                 class="item"
-                                effect="dark"
+                                effect="light"
                                 content="保存模板"
-                                placement="top"
+                                placement="top-start"
                                 :show-after="800">
                                 <div class="save-template" @click="saveTemplate"></div>
                             </el-tooltip>
@@ -107,7 +107,7 @@
 <script>
 import { ref, reactive , toRefs, toRaw, onMounted, onUnmounted } from "vue"
 
-import { Graph, Shape } from '@antv/x6';   // 引入antv/x6 依赖
+import { Cell, Graph, Shape } from '@antv/x6';   // 引入antv/x6 依赖
 import { useRoute,useRouter } from 'vue-router'
 
 import auth from "../../assets/js/auth.js"
@@ -239,11 +239,14 @@ export default {
             // 添加一个detail属性，将要在节点展示的内容信息集合到detail属性上
             res.data.flow.nodes.forEach(d => {
                 if(d.nodeContentType != 'start' && d.nodeContentType != 'end'){
-                    d.detail = d.stepNode.weaponObj.cmd || '--';
-                    d.stepNode.weaponObj.params.forEach(x=>{
-                        d.detail += x.name;
-                        d.detail += ' -- ' + x.val;
-                    })
+                    if(d.stepNode && d.stepNode.weaponObj){
+                        d.weaponNameShow = d.stepNode.weaponObj.payload_name
+                        d.detail = d.stepNode.weaponObj.cmd || '--';
+                        d.stepNode.weaponObj.params.forEach(x=>{
+                            d.detail += x.name;
+                            d.detail += ' -- ' + x.val;
+                        })
+                    }
                 }
             })
 
@@ -275,10 +278,11 @@ export default {
                             wrap.style.alignItems = 'center'
                             wrap.style.borderRadius = '5px'
                             wrap.style.boxShadow = '0px 1px 4px 0px rgba(0, 59, 129, 0.15)'
-                            wrap.innerText = item.nodeContentType == 'start'?'开始':'结束'
+                            wrap.innerText = item.nodeContentType == 'start'?'起点':'终点'
+
 
                             const wrapImg = document.createElement('div');
-                            wrapImg.className = 'node-wrap-img'
+                            wrapImg.className = `node-wrap-img-${item.nodeContentType}`
                             wrap.appendChild(wrapImg)
                             
                             return wrap
@@ -319,6 +323,16 @@ export default {
                             wrapImgSmall.className = 'node-wrap-img-small'
                             wrapHead.appendChild(wrapImgSmall)
 
+                            // 在头部标题添加编辑和删除功能
+                            const wrapIncon1 = document.createElement('div');
+                            wrapIncon1.className = 'edit';
+                            wrapIncon1.addEventListener("click",editNode)
+                            wrapHead.appendChild(wrapIncon1)
+                            const wrapIncon2 = document.createElement('div');
+                            wrapIncon2.className = 'del';
+                            wrapIncon2.addEventListener("click",delNode)
+                            wrapHead.appendChild(wrapIncon2)
+
                             // 在wrap里面添加内容主体
                             const wrapContent = document.createElement('div');
                             wrapContent.className = 'node-wrap-content'
@@ -335,7 +349,7 @@ export default {
 
                             const hDes = document.createElement('p')
                             hDes.className = 'node-desc';
-                            hDes.innerText = item.nodeContentType;
+                            hDes.innerText = item.weaponNameShow;
                             wrapContentName.appendChild(hDes)
 
 
@@ -394,6 +408,7 @@ export default {
             
             graph.zoom(0.1)
             graph.centerContent();  // 将画布内容中心与视口中心对齐
+
         }
 
         function Init(){
@@ -413,6 +428,14 @@ export default {
         // 切换active
         function changeActive(id){
             activeId.value = id;
+        }
+        // 编辑节点
+        function editNode(e){
+            console.log("编辑节点",e);
+        }
+        // 删除节点
+        function delNode(e){
+            console.log("删除节点",e);
         }
         
         onUnmounted(()=>{
@@ -438,6 +461,8 @@ export default {
             refresh,        // 重新编排
             saveTemplate,   // 保存模板
             changeActive,   // 切换active
+            editNode,       // 编辑节点
+            delNode,        // 删除节点
 
 
             activeNames,
@@ -458,16 +483,23 @@ export default {
     position: relative;
     display: inline-block;
 }
-.node-wrap-img{
+.node-wrap-img-start,
+.node-wrap-img-end{
     position: absolute;
     left: 16px;
     display: inline-block;
     width: 30px;
     height: 16px;
-    background-image: url("/src/assets/image/script-maage/start-node.png");
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;
+}
+
+.node-wrap-img-start{
+    background-image: url("/src/assets/image/script-maage/start-node.png");
+}
+.node-wrap-img-end{
+    background-image: url("/src/assets/image/script-maage/end-node.png");
 }
 .node-wrap-head{
     position: absolute;
@@ -487,11 +519,29 @@ export default {
         display: inline-block;
         width: 30px;
         height: 30px;
-        // background-image: url("/src/assets/image/script-maage/scanning.png");
-        background-image: url('https://img2.baidu.com/it/u=2978608128,97714912&fm=26&fmt=auto');
+        background-image: url("/src/assets/image/script-maage/scanning.png");
+        // background-image: url('https://img2.baidu.com/it/u=2978608128,97714912&fm=26&fmt=auto');
         background-size: contain;
         background-repeat: no-repeat;
         vertical-align: middle;
+    }
+    .edit,.del{
+        position: absolute;
+        top: 10px;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .edit{
+        right: 40px;
+        background-image: url("/src/assets/image/script-maage/edit.png");
+    }
+    .del{
+        right: 10px;
+        background-image: url("/src/assets/image/script-maage/red-del.png");
     }
 }
 .node-wrap-content{

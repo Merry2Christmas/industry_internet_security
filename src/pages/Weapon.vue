@@ -7,25 +7,25 @@
                 <div class="icon">
                     <el-tooltip
                         class="item"
-                        effect="dark"
+                        effect="light"
                         content="删除武器"
-                        placement="top"
+                        placement="top-start"
                         :show-after="800">
                         <div class="del" @click="delWeapon"></div>
                     </el-tooltip>
                     <el-tooltip
                         class="item"
-                        effect="dark"
+                        effect="light"
                         content="武器下载"
-                        placement="top"
+                        placement="top-start"
                         :show-after="800">
                         <div class="download" @click="downloadWeapon"></div>
                     </el-tooltip>
                     <el-tooltip
                         class="item"
-                        effect="dark"
+                        effect="light"
                         content="新增武器"
-                        placement="top"
+                        placement="top-start"
                         :show-after="800">
                         <div class="add" @click="addWeapon"></div>
                     </el-tooltip>
@@ -78,26 +78,28 @@
             </div>
             <div class="_list">
                 <el-row class="list-title">
+                    <el-col :span="1"><el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange"></el-checkbox></el-col>
                     <el-col v-for="(item,index) in titleList" :key="index" :span="item.width">{{ item.name || '--' }}</el-col>
                 </el-row>
                 <div class="content-list" v-if="contentList.length">
                     <el-scrollbar style="height:100%" class="scrollbar-for">
                         <el-row v-for="(item,index) in contentList" :key="index">
-                            <el-col :span="1">{{ index+1+pageSize*(currentPage-1) }}</el-col>
+                            <el-col :span="1"><el-checkbox v-model="item.check" @change="checkCollect"></el-checkbox></el-col>
+                            <el-col :span="1">{{ index+1+pageSize*(pageIndex-1) }}</el-col>
                             <el-tooltip
                                 class="item"
-                                effect="dark"
+                                effect="light"
                                 :content="item.payloadName||'--'"
-                                placement="top"
+                                placement="top-start"
                                 :show-after="800">
                                 <el-col :span="4" class="skip" @click="weaponDetail(item.id)">{{ item.payloadName||'--' }}</el-col>
                             </el-tooltip>
                             
                             <el-tooltip
                                 class="item"
-                                effect="dark"
+                                effect="light"
                                 :content="item.payloadType||'--'"
-                                placement="top"
+                                placement="top-start"
                                 :show-after="800">
                                 <el-col :span="3">{{ item.payloadType || '--' }}</el-col>
                             </el-tooltip>
@@ -108,20 +110,20 @@
                             <el-col :span="2">{{ item.diffLevel || '--' }}</el-col>
                             <el-col :span="2">{{ item.platform.toString() || '--' }}</el-col>
                             <el-col :span="3">{{ item.appName || '--' }}</el-col>
-                            <el-col :span="3" class="operate">
+                            <el-col :span="2" class="operate">
                                 <el-tooltip
                                 class="item"
-                                effect="dark"
+                                effect="light"
                                 content="查看武器详情"
-                                placement="top"
+                                placement="top-start"
                                 :show-after="800">
                                     <div class="detail" @click="weaponDetail(item.id)"></div>
                                 </el-tooltip>
                                 <el-tooltip
                                 class="item"
-                                effect="dark"
+                                effect="light"
                                 content="删除武器"
-                                placement="top"
+                                placement="top-start"
                                 :show-after="800">
                                     <div class="del" @click="delWeapon"></div>
                                 </el-tooltip>
@@ -133,10 +135,12 @@
                     <el-empty description="暂无武器库列表数据"></el-empty>
                 </div>
                 <div class="page" v-if="contentList.length">
-                    <el-pagination background layout="total, prev, pager, next" :total="total"
-                     v-model:currentPage="currentPage"
-                     @size-change="handleSizeChange" 
-                     @current-change="handleCurrentChange"></el-pagination>
+                    <el-pagination background layout="total, prev, pager, next" 
+                    :total="total" 
+                    :page-size="pageSize"
+                    v-model:currentPage="pageIndex"
+                    @size-change="handleSizeChange" 
+                    @current-change="handleCurrentChange"></el-pagination>
                 </div>
             </div>
         </div>
@@ -149,7 +153,7 @@
 <script>
 import Dialog from "../components/drama/weaponDialog.vue"
 
-import { ref, toRef, toRefs, reactive, onMounted, onUpdated } from 'vue';
+import { ref, toRef, toRefs, reactive, onMounted, onBeforeUnmount, onUpdated } from 'vue';
 
 import { ElMessageBox, ElMessage } from 'element-plus'
 import weaponApi from "../API/weaponApi"
@@ -181,7 +185,7 @@ export default {
             { name:"利用难度", width: 2 },
             { name:"平台", width: 2 },
             { name:"受影响产品", width: 3 },
-            { name:"操作", width: 3 },
+            { name:"操作", width: 2 },
         ])
         // 危险等级下拉选项
         const riskList = reactive([
@@ -199,7 +203,6 @@ export default {
             }
         ])
         // 利用难度下拉选项
-        // 利用难度下拉
         const diffList = reactive([
             {
                 value: 'easy',
@@ -217,12 +220,13 @@ export default {
         // 武器列表相关的参数信息
         let weaponInfo = reactive({
             pageIndex: 1,
-            pageSize: 10,
+            pageSize: 20,
             param: '',
             total: 0,
-            currentPage: 1
+
+            checkAll: false,    // 是否全选
+            isIndeterminate: false, // 是否多选
         })
-        let total3 = ref(parseInt(9));
         // 武器列表的内容
         let contentList = ref([]);
         
@@ -255,6 +259,25 @@ export default {
         function addWeapon(){
             dialog.dialogVisible = true;
         }
+        // 是否点击全选
+        function handleCheckAllChange(val){
+            weaponInfo.isIndeterminate = false;
+            weaponInfo.checkAll = val;    // 将值赋给全选框
+            contentList.value.forEach(item => {
+                item.check = val;
+            })
+        }
+        // 是否选中
+        function checkCollect(val){
+            let arr = [];
+            contentList.value.forEach(i => {
+                if(i.check) arr.push(i);
+            })
+            // 全选展示
+            weaponInfo.checkAll = (arr.length == contentList.value.length);
+            // isIndeterminate展示
+            weaponInfo.isIndeterminate = (arr.length != 0 && !weaponInfo.checkAll);
+        }
 
         function init(){
             WeaponInfo();
@@ -279,6 +302,9 @@ export default {
                             }
                         })
                     }
+                })
+                res.data.list.forEach(item => {
+                    item.check = false;
                 })
                 contentList.value = res.data.list;
                 weaponInfo.total = res.data.total;
@@ -313,14 +339,35 @@ export default {
             //     path: path,
             // })
         }
+
+
+        // // 页面滚动时，清除tooltip气泡
+        // function handleScroll(){
+        //     console.log("调用了这个方法");
+        //     return
+        //     let tooltips = document.getElementsByClassName('el-tooltip__popper')
+        //     console.log(tooltips);
+        //     if (tooltips.length > 0) {
+        //         tooltips[tooltips.length - 1].style.display = 'none'
+        //     }
+        // }
+        // // mounted 方法,挂载在全局
+        // onMounted(()=>{
+        //     window.addEventListener('scroll',handleScroll)
+        // })
+        // // onBeforeUnmount方法, 在页面关闭前移除掉该方法
+        // onBeforeUnmount(()=>{
+        //     window.removeEventListener('scroll',handleScroll)    
+        // })
         
         return {
             titleList,
-            total3,
             ...toRefs(weaponInfo),
             ...toRefs(dialog),
             contentList,
             // 方法
+            checkCollect,
+            handleCheckAllChange,
             delWeapon,
             downloadWeapon,
             addWeapon,

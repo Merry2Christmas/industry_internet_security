@@ -23,25 +23,25 @@
                         <div class="icon" v-if="activeId == '0'">
                             <el-tooltip
                                 class="item"
-                                effect="dark"
+                                effect="light"
                                 content="发布"
-                                placement="top"
+                                placement="top-start"
                                 :show-after="800">
                                 <div class="release" @click="release"></div>
                             </el-tooltip>
                             <el-tooltip
                                 class="item"
-                                effect="dark"
+                                effect="light"
                                 content="保存"
-                                placement="top"
+                                placement="top-start"
                                 :show-after="800">
                                 <div class="save" @click="save"></div>
                             </el-tooltip>
                             <el-tooltip
                                 class="item"
-                                effect="dark"
+                                effect="light"
                                 content="保存模板"
-                                placement="top"
+                                placement="top-start"
                                 :show-after="800">
                                 <div class="save-template" @click="saveTemplate"></div>
                             </el-tooltip>
@@ -50,17 +50,17 @@
                         <div class="icon" v-else>
                             <el-tooltip
                                 class="item"
-                                effect="dark"
+                                effect="light"
                                 content="重新编排"
-                                placement="top"
+                                placement="top-start"
                                 :show-after="800">
                                 <div class="refresh" @click="refresh"></div>
                             </el-tooltip>
                             <el-tooltip
                                 class="item"
-                                effect="dark"
+                                effect="light"
                                 content="保存模板"
-                                placement="top"
+                                placement="top-start"
                                 :show-after="800">
                                 <div class="save-template" @click="saveTemplate"></div>
                             </el-tooltip>
