@@ -33,8 +33,12 @@ export default {
         let activeId = ref('0');    // 路由所在的索引
         let route = useRoute();     // 路由跳转的方法
         let router = useRouter();   // 路由的对象，包含了许多关键的对象和属性
-        let List = reactive(
-            [{ name:'剧本管理', id: 0, path:'/Drama' }, { name:'武器管理', id: 1, path:'/Weapon' }]);
+        let List = reactive([
+            { name:'剧本管理', id: 0, path:'/Drama' }, 
+            { name:'武器管理', id: 1, path:'/Weapon' },
+            { name:'2D拓扑', id: 2, path:'/2D' },
+            { name:'3D拓扑', id: 3, path:'/3D' },
+        ]);
         
         
         function changeActive(item){
@@ -67,7 +71,7 @@ export default {
     height: 44px;
     background: linear-gradient(90deg, #0067E4 0%, #00A2F7 100%);
     ul{
-        width: 240px;
+        width: 350px;
         margin: 0 auto;
         display: flex;
         justify-content: center;

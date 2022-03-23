@@ -101,6 +101,8 @@
                 </div> -->
             </div>
         </div>
+
+        <Dialog :dialogVisible="dialogVisible" @switchDialog="switchDialog" :info="info"></Dialog>
     </div>
 </template>
 
@@ -112,17 +114,22 @@ import { useRoute,useRouter } from 'vue-router'
 
 import auth from "../../assets/js/auth.js"
 import dramaScenario from "../../API/dramaScenario.js";
+import Dialog from "../../components/drama/executeDialog.vue"
 
 export default {
     name: "DramaRun",
+    components:{ Dialog },
     setup() {
+        let dialogVisible = ref(false);
+        let info = ref();
+
         let route = useRoute(); //路由参数
         let router = useRouter();
 
         const id = route.query.id;  // 该剧本的id
 
         let activeNames  = ref(['0','1']);  // 默认展开选项
-        // 点击展开时返回参数
+        // 点击展开左侧栏目时返回参数
         const handleChange = (val) => {
             // console.log(val)
         }
@@ -323,13 +330,15 @@ export default {
                             wrapImgSmall.className = 'node-wrap-img-small'
                             wrapHead.appendChild(wrapImgSmall)
 
-                            // 在头部标题添加编辑和删除功能
+                            // 在头部标题添加编辑和删除功能d,为删除和编辑添加nodeId
                             const wrapIncon1 = document.createElement('div');
                             wrapIncon1.className = 'edit';
+                            wrapIncon1.all = item;
                             wrapIncon1.addEventListener("click",editNode)
                             wrapHead.appendChild(wrapIncon1)
                             const wrapIncon2 = document.createElement('div');
                             wrapIncon2.className = 'del';
+                            wrapIncon2.nodeId = item.nodeId;
                             wrapIncon2.addEventListener("click",delNode)
                             wrapHead.appendChild(wrapIncon2)
 
@@ -432,10 +441,18 @@ export default {
         // 编辑节点
         function editNode(e){
             console.log("编辑节点",e);
+            info.value = e.path[0].all;
+            console.log(info.value);
+            switchDialog(true);
         }
         // 删除节点
         function delNode(e){
-            console.log("删除节点",e);
+            
+            // 将item.node 绑定在图标上，通过点击获得nodeId，点击的图标位于事件e的第一个
+            graph.removeNode(e.path[0].nodeId)
+        }
+        function switchDialog(param){
+            dialogVisible.value = param;
         }
         
         onUnmounted(()=>{
@@ -448,6 +465,8 @@ export default {
             activeId,
             logTitleList,   // 执行日志的标题
             ...toRefs(script),
+            dialogVisible,
+            info,
             //------
             graph,
             id,
@@ -468,6 +487,7 @@ export default {
             activeNames,
             nodesList,
             handleChange,
+            switchDialog,
         };
     },
 };

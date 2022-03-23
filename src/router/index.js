@@ -55,6 +55,18 @@ const  routes = [
                 path: "/Weapon/weaponDetail",
                 name: "WeaponDetail",
                 component: () => import("/src/pages/Weapon/weaponDetail.vue")
+            },
+            {
+                // 2D拓扑
+                path: "/2D",
+                name: "2D",
+                component: () => import("/src/pages/Topo/Topo-2D.vue")
+            },
+            {
+                // 3D拓扑
+                path: "/3D",
+                name: "3D",
+                component: () => import("/src/pages/Topo/Topo-3D.vue")
             }
         ]
     },
