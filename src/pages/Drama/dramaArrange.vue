@@ -1,5 +1,9 @@
 <template>
 
+
+    <!-- simple2 -- 基础版本2 -->
+
+
     <!-- 剧本编排 -->
     <div class="drama-arrange">
         <!-- <h1>剧本执行界面</h1> -->

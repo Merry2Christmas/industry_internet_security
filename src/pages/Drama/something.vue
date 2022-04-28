@@ -1,4 +1,7 @@
 <template>
+
+    <!-- simple1 -- 基础版本1 -->
+
     <div class="drama-edit">
         <h1>剧本编排界面<button @click="down">下载</button></h1>
 
@@ -14,7 +17,7 @@ import { useRoute,useRouter } from 'vue-router'
 
 import dramaScenario from "../../API/dramaScenario.js";
 export default {
-    name: "DramaEdit",
+    name: "something",
     setup() {
         let route = useRoute(); //路由参数
         let router = useRouter();

@@ -135,8 +135,12 @@
                             <el-scrollbar style="height:100%" class="scrollbar-for">
                                 <el-row v-for="(item,index) in contentList" :key="index">
                                     <el-col :span="2">{{ index+1+(pageIndex-1)*pageSize }}</el-col>
-                                    <el-col :span="4" class="skip" @click="skip(item.status,item._id)">{{ item.name || '--' }} ></el-col>
-                                    <el-col :span="5">{{ item.createTime || '--' }}</el-col>
+                                    <!-- <el-col :span="1"><span class="status">{{ item.status == '0'?'编排':'运行' }}</span></el-col> -->
+                                    <el-col :span="5">
+                                        <span class="skip" @click="skip(item.status,item._id)">{{ item.name || '--' }} ></span>
+                                        <span class="mini-map" @click="miniMap(item._id)">缩略图></span>
+                                    </el-col>
+                                    <el-col :span="4">{{ item.createTime || '--' }}</el-col>
                                     <el-col :span="5">{{ item.publishTime || '--' }}</el-col>
                                     <el-col :span="2">{{ item.runNum || '0' }}</el-col>
                                     <el-col :span="3" :style="`color: ${item.status=='1'?'rgba(4, 199, 126, 1)':'rgba(153, 153, 153, 1)'}`">{{ statusList[item.status] }}</el-col>
@@ -405,10 +409,11 @@ export default {
                 })
             })
         }
-        // 界面跳转  ----> 进入编排/编辑界面
+        
+
+        // 界面跳转  ----> 进入编排/执行界面
         function skip(param,id){
-            // let path = param ? '/Drama/dramaRun' : '/Drama/dramaEdit';
-            let path = param ? '/Drama/dramaArrange' : '/Drama/dramaRun';
+            let path = param ? '/Drama/dramaArrange' : '/Drama/dramaRunNew';
             router.push({
                 path: path,
                 query:{
@@ -416,6 +421,17 @@ export default {
                 }
             })
         }
+
+        // 界面跳转进入缩略图界面
+        function miniMap(id){
+            router.push({
+                path: '/Drama/miniMap',
+                query:{
+                    id
+                }
+            })
+        }
+
         // 是否展示弹窗
         function showDialog(value){
             dialog.dialogVisible = value;
@@ -443,6 +459,7 @@ export default {
             delDrama,
             reFresh,
             skip,
+            miniMap,
             showDialog
         };
     },
@@ -619,8 +636,21 @@ export default {
                             height: 44px;
                             padding-left: 22px;
                             box-sizing: border-box;
+                            .status{
+                                font-size: 12px;
+                                color: rgba(0, 130, 255, 1);
+                                padding: 2px 2px;
+                                border: 1px solid rgba(0, 130, 255, 1);
+                                border-radius: 8px;
+                            }
                             .skip{
                                 color: rgba(0, 130, 255, 1) !important;
+                                cursor: pointer;
+                            }
+                            .mini-map{
+                                margin-left: 10px;
+                                font-size: 12px;
+                                color: #e13232 !important;
                                 cursor: pointer;
                             }
                             .el-col{

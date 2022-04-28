@@ -334,10 +334,6 @@ export default {
         }
         // 界面跳转
         function skip(){
-            // let path = param ? '/Drama/dramaRun' : '/Drama/dramaEdit';
-            // router.push({
-            //     path: path,
-            // })
         }
 
 
