@@ -54,6 +54,12 @@ const  routes = [
                 name: "something",
                 component: () => import("/src/pages/Drama/something.vue")
             },
+            {
+                // 一个单独的小地图界面
+                path: 'Drama/antvMinimap',
+                name: "antvMinimap",
+                component: () => import("/src/pages/Drama/antvMinimap.vue")
+            },
 
             // ------------------------------以下为武器界面
             {
