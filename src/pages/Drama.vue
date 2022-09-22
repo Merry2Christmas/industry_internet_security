@@ -534,6 +534,7 @@ export default {
                     float: right;
                     width: 40%;
                     margin-right: 10px;
+                    margin-top: 20px;
                     p{
                         font-size: 14px;
                         font-weight: 400;

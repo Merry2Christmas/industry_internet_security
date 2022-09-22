@@ -78,6 +78,7 @@ export default {
         li{
             flex: 1;
             line-height: 44px;
+            text-align: center;
             color: white;
             cursor: pointer;
         }
