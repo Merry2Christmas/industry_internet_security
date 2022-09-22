@@ -1,0 +1,34 @@
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+      "id": "63177c92e4276c4f4fbdbfa2",
+      "ba_id": "ba-110285",
+      "ba_name": "ICMP Echo Request Ping",
+      "ba_zh_name": "ICMP回显请求Ping",
+      "source": "generate",
+      "nodes": [
+        {
+          "id": "ba-110285",
+          "name": "ICMP Echo Request Ping",
+          "zh_name": "ICMP回显请求Ping",
+          "type": "BA"
+        },
+        {
+          "id": "sangfor-IPS-0",
+          "name": "sangfor-IPS-0",
+          "zh_name": "",
+          "type": "AE"
+        }
+      ],
+      "links": [
+        {
+          "id": "ba-110285:sangfor-IPS-0",
+          "src": "ba-110285",
+          "dst": "sangfor-IPS-0",
+          "tag": "instance"
+        }
+      ],
+      "is_delete": 0
+    }
+  }

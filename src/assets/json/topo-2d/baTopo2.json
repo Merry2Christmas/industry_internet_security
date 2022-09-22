@@ -1,0 +1,286 @@
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+      "id": "6316ee61fd790074ac841f5f",
+      "ba_id": "ba-110292",
+      "ba_name": "Host Discovery",
+      "ba_zh_name": "主机发现",
+      "source": "generate",
+      "nodes": [
+        {
+          "id": "ba-110292",
+          "name": "Host Discovery",
+          "zh_name": "主机发现",
+          "type": "BA"
+        },
+        {
+          "id": "topsec-taw-10544",
+          "name": "topsec-taw-10544",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "topsec-taw-10533",
+          "name": "topsec-taw-10533",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "topsec-taw-10565",
+          "name": "topsec-taw-10565",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "topsec-taw-12757",
+          "name": "topsec-taw-12757",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "SANGFOR_IPS_11070105",
+          "name": "SANGFOR_IPS_11070105",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "CWE-16",
+          "name": "CWE-16",
+          "zh_name": "",
+          "type": "Weakness"
+        },
+        {
+          "id": "H3C-IPS1-IPS-23251",
+          "name": "H3C-IPS1-IPS-23251",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "H3C-IPS1-IPS-23545",
+          "name": "H3C-IPS1-IPS-23545",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "nsfocus-30348",
+          "name": "nsfocus-30348",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "nsfocus-30655",
+          "name": "nsfocus-30655",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "nsfocus-41702",
+          "name": "nsfocus-41702",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "null",
+          "name": "null",
+          "zh_name": "",
+          "type": "Weakness"
+        },
+        {
+          "id": "qianxin-skyeye-22965",
+          "name": "qianxin-skyeye-22965",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "qianxin-skyeye-22967",
+          "name": "qianxin-skyeye-22967",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "qianxin-skyeye-22966",
+          "name": "qianxin-skyeye-22966",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "TopIDP-10544",
+          "name": "TopIDP-10544",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "TopIDP-10565",
+          "name": "TopIDP-10565",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "TopTVD-10544",
+          "name": "TopTVD-10544",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "TopTVD-10565",
+          "name": "TopTVD-10565",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "TopTVD-10533",
+          "name": "TopTVD-10533",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "H3C-IPS1-IPS-37026",
+          "name": "H3C-IPS1-IPS-37026",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "qianxin-skyeye-268438037",
+          "name": "qianxin-skyeye-268438037",
+          "zh_name": "",
+          "type": "AE"
+        }
+      ],
+      "links": [
+        {
+          "id": "ba-110292:topsec-taw-10544",
+          "src": "ba-110292",
+          "dst": "topsec-taw-10544",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:topsec-taw-10533",
+          "src": "ba-110292",
+          "dst": "topsec-taw-10533",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:topsec-taw-10565",
+          "src": "ba-110292",
+          "dst": "topsec-taw-10565",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:topsec-taw-12757",
+          "src": "ba-110292",
+          "dst": "topsec-taw-12757",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:SANGFOR_IPS_11070105",
+          "src": "ba-110292",
+          "dst": "SANGFOR_IPS_11070105",
+          "tag": "instance"
+        },
+        {
+          "id": "SANGFOR_IPS_11070105:CWE-16",
+          "src": "SANGFOR_IPS_11070105",
+          "dst": "CWE-16",
+          "tag": "exploit"
+        },
+        {
+          "id": "ba-110292:H3C-IPS1-IPS-23251",
+          "src": "ba-110292",
+          "dst": "H3C-IPS1-IPS-23251",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:H3C-IPS1-IPS-23545",
+          "src": "ba-110292",
+          "dst": "H3C-IPS1-IPS-23545",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:nsfocus-30348",
+          "src": "ba-110292",
+          "dst": "nsfocus-30348",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:nsfocus-30655",
+          "src": "ba-110292",
+          "dst": "nsfocus-30655",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:nsfocus-41702",
+          "src": "ba-110292",
+          "dst": "nsfocus-41702",
+          "tag": "instance"
+        },
+        {
+          "id": "nsfocus-41702:null",
+          "src": "nsfocus-41702",
+          "dst": "null",
+          "tag": "exploit"
+        },
+        {
+          "id": "ba-110292:qianxin-skyeye-22965",
+          "src": "ba-110292",
+          "dst": "qianxin-skyeye-22965",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:qianxin-skyeye-22967",
+          "src": "ba-110292",
+          "dst": "qianxin-skyeye-22967",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:qianxin-skyeye-22966",
+          "src": "ba-110292",
+          "dst": "qianxin-skyeye-22966",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:TopIDP-10544",
+          "src": "ba-110292",
+          "dst": "TopIDP-10544",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:TopIDP-10565",
+          "src": "ba-110292",
+          "dst": "TopIDP-10565",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:TopTVD-10544",
+          "src": "ba-110292",
+          "dst": "TopTVD-10544",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:TopTVD-10565",
+          "src": "ba-110292",
+          "dst": "TopTVD-10565",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:TopTVD-10533",
+          "src": "ba-110292",
+          "dst": "TopTVD-10533",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:H3C-IPS1-IPS-37026",
+          "src": "ba-110292",
+          "dst": "H3C-IPS1-IPS-37026",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-110292:qianxin-skyeye-268438037",
+          "src": "ba-110292",
+          "dst": "qianxin-skyeye-268438037",
+          "tag": "instance"
+        }
+      ],
+      "is_delete": 0
+    }
+  }

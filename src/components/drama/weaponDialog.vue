@@ -321,7 +321,7 @@ export default {
 
 <style lang="less" scoped>
 
-/deep/.weapon-dialog{
+:deep(.weapon-dialog){
     margin-top: 4vh;
     .weapon-dialog-step{
         padding: 0 100px 15px;

@@ -102,7 +102,7 @@ export default {
 <style lang="less" scoped>
 .drama-dialog{
     .el-textarea{
-        /deep/.el-textarea__inner{
+        :deep(.el-textarea__inner){
             background-color: #F0F0F0;
             border: none;
             height: 76px !important;
@@ -112,7 +112,7 @@ export default {
     }
     .el-form{
         .indent{
-            /deep/.el-form-item__label{
+            :deep(.el-form-item__label){
                 text-indent: 10px;
             }
         }

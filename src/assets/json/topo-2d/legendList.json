@@ -1,0 +1,30 @@
+{
+  "code": 200,
+  "msg": "查询成功",
+  "data": [
+    {
+      "value": "Weakness",
+      "name": "弱点"
+    },
+    {
+      "value": "CA",
+      "name": "复杂攻击"
+    },
+    {
+      "value": "AE",
+      "name": "安全事件"
+    },
+    {
+      "value": "Vulnerability",
+      "name": "漏洞"
+    },
+    {
+      "value": "Software",
+      "name": "软件"
+    },
+    {
+      "value": "BA",
+      "name": "基础攻击"
+    }
+  ]
+}

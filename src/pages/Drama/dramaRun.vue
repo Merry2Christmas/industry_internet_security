@@ -620,7 +620,7 @@ export default {
     }
     .demo-collapse{
         .el-collapse{
-            /deep/.el-collapse-item__header{
+            :deep(.el-collapse-item__header){
                 padding-left: 20px;
                 box-sizing: border-box;
 
@@ -628,7 +628,7 @@ export default {
                 height: 36px;
                 background: #F3F5F7;
             }
-            /deep/.el-collapse-item__content{
+            :deep(.el-collapse-item__content){
                 // background-color: orange;
                 padding: 10px;
                 box-sizing: border-box;

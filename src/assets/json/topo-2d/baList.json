@@ -1,0 +1,149 @@
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+        "list": [
+            {
+            "id": "6316ee69fd790074ac842018",
+            "source": "generate",
+            "ba_id": "ba-120307",
+            "ba_name": "TCP RPC Scan",
+            "ba_zh_name": "TCP RPC扫描"
+            },
+            {
+            "id": "6316ee6afd790074ac842023",
+            "source": "generate",
+            "ba_id": "ba-120308",
+            "ba_name": "UDP Scan",
+            "ba_zh_name": "UDP扫描"
+            },
+            {
+            "id": "6316ee6efd790074ac842080",
+            "source": "generate",
+            "ba_id": "ba-120309",
+            "ba_name": "Network Topology Mapping",
+            "ba_zh_name": "网络拓扑映射"
+            },
+            {
+            "id": "6316ee6afd790074ac842031",
+            "source": "generate",
+            "ba_id": "ba-120320",
+            "ba_name": "TCP Timestamp Probe",
+            "ba_zh_name": "TCP时间戳探测"
+            },
+            {
+            "id": "6316ee6bfd790074ac84203c",
+            "source": "generate",
+            "ba_id": "ba-120321",
+            "ba_name": "TCP Sequence Number Probe",
+            "ba_zh_name": "TCP序列号探测"
+            },
+            {
+            "id": "6316ee6cfd790074ac84204c",
+            "source": "generate",
+            "ba_id": "ba-120322",
+            "ba_name": "TCP (ISN) Greatest Common Divisor Probe",
+            "ba_zh_name": "TCP（ISN）最大公约数探测"
+            },
+            {
+            "id": "6316ee6cfd790074ac842056",
+            "source": "generate",
+            "ba_id": "ba-120323",
+            "ba_name": "TCP (ISN) Counter Rate Probe",
+            "ba_zh_name": "TCP（ISN）计数器速率探测"
+            },
+            {
+            "id": "6316ee6dfd790074ac842062",
+            "source": "generate",
+            "ba_id": "ba-120324",
+            "ba_name": "TCP (ISN) Sequence Predictability Probe",
+            "ba_zh_name": "TCP（ISN）序列可预测性探测"
+            },
+            {
+            "id": "6316ee6dfd790074ac84206b",
+            "source": "generate",
+            "ba_id": "ba-120325",
+            "ba_name": "TCP Congestion Control Flag (ECN) Probe",
+            "ba_zh_name": "TCP拥塞控制标志（ECN）探测"
+            },
+            {
+            "id": "6316ee6efd790074ac842076",
+            "source": "generate",
+            "ba_id": "ba-120326",
+            "ba_name": "TCP Initial Window Size Probe",
+            "ba_zh_name": "TCP初始窗口大小探测"
+            },
+            {
+            "id": "6316ee6afd790074ac842024",
+            "source": "generate",
+            "ba_id": "ba-120327",
+            "ba_name": "TCP Options Probe",
+            "ba_zh_name": "TCP选项探测"
+            },
+            {
+            "id": "6316ee6afd790074ac842030",
+            "source": "generate",
+            "ba_id": "ba-120328",
+            "ba_name": "TCP 'RST' Flag Checksum Probe",
+            "ba_zh_name": "TCP“ RST”标志校验和探测"
+            },
+            {
+            "id": "6316ee6dfd790074ac84205f",
+            "source": "generate",
+            "ba_id": "ba-120331",
+            "ba_name": "ICMP IP Total Length Field Probe",
+            "ba_zh_name": "ICMP IP总长度字段探测"
+            },
+            {
+            "id": "6316ee6dfd790074ac84206c",
+            "source": "generate",
+            "ba_id": "ba-120332",
+            "ba_name": "ICMP IP 'ID' Field Error Message Probe",
+            "ba_zh_name": "ICMP IP“ ID”字段错误消息探测"
+            },
+            {
+            "id": "6316ee64fd790074ac841faa",
+            "source": "generate",
+            "ba_id": "ba-130006",
+            "ba_name": "Argument Injection",
+            "ba_zh_name": "参数注入"
+            },
+            {
+            "id": "6316ee73fd790074ac8420e3",
+            "source": "generate",
+            "ba_id": "ba-130010",
+            "ba_name": "Buffer Overflow via Environment Variables",
+            "ba_zh_name": "环境变量的缓冲区溢出"
+            },
+            {
+            "id": "6316ee6bfd790074ac842043",
+            "source": "generate",
+            "ba_id": "ba-130095",
+            "ba_name": "WSDL Scanning",
+            "ba_zh_name": "WSDL扫描"
+            },
+            {
+            "id": "6316ee70fd790074ac8420a0",
+            "source": "generate",
+            "ba_id": "ba-130116",
+            "ba_name": "Excavation",
+            "ba_zh_name": "信息挖掘"
+            },
+            {
+            "id": "6316ee66fd790074ac841fc6",
+            "source": "generate",
+            "ba_id": "ba-130169",
+            "ba_name": "Footprinting",
+            "ba_zh_name": "指纹攻击"
+            },
+            {
+            "id": "6316ee75fd790074ac842107",
+            "source": "generate",
+            "ba_id": "ba-130224",
+            "ba_name": "Fingerprinting",
+            "ba_zh_name": "指纹识别"
+            }
+        ],
+        "total": 120
+    }
+}

@@ -86,7 +86,7 @@ export default {
             .el-col{
                 text-align: left;
                 color: rgba(26, 26, 26, 1);
-                /deep/.el-input__inner{
+                :deep(.el-input__inner){
                     height: 30px;
                     border: none;
                     background-color: rgba(235, 235, 235, 1);

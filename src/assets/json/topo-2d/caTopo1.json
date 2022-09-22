@@ -1,0 +1,450 @@
+{
+    "code": 200,
+    "msg": "查询成功",
+    "data": {
+      "id": "631702b2ee1ed034d78766af",
+      "ca_id": "APT-A-Slice-of-2017-Sofacy-Activity---Securelist",
+      "ca_name": "APT-A-Slice-of-2017-Sofacy-Activity---Securelist",
+      "ca_zh_name": "",
+      "nodes": [
+        {
+          "id": "APT-A-Slice-of-2017-Sofacy-Activity---Securelist",
+          "name": "APT-A-Slice-of-2017-Sofacy-Activity---Securelist",
+          "zh_name": "APT-A-Slice-of-2017-Sofacy-Activity---Securelist",
+          "type": "CA"
+        },
+        {
+          "id": "ba-252163",
+          "name": "Spear Phishing",
+          "zh_name": "鱼叉式网络钓鱼",
+          "type": "BA"
+        },
+        {
+          "id": "TopIDP-18951",
+          "name": "TopIDP-18951",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "CVE-2006-2492",
+          "name": "CVE-2006-2492",
+          "zh_name": "",
+          "type": "Vulnerability"
+        },
+        {
+          "id": "microsoft word 2003",
+          "name": "microsoft word 2003",
+          "zh_name": "",
+          "type": "Software"
+        },
+        {
+          "id": "TopIDP-18950",
+          "name": "TopIDP-18950",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "TopIDP-19742",
+          "name": "TopIDP-19742",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "TopTVD-18951",
+          "name": "TopTVD-18951",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "TopTVD-18950",
+          "name": "TopTVD-18950",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "TopTVD-19742",
+          "name": "TopTVD-19742",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "SANGFOR_IPS_12020600",
+          "name": "SANGFOR_IPS_12020600",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "CVE-2017-8759",
+          "name": "CVE-2017-8759",
+          "zh_name": "",
+          "type": "Vulnerability"
+        },
+        {
+          "id": "microsoft -net_framework 2.0 sp2",
+          "name": "microsoft -net_framework 2.0 sp2",
+          "zh_name": "",
+          "type": "Software"
+        },
+        {
+          "id": "microsoft -net_framework 3.5",
+          "name": "microsoft -net_framework 3.5",
+          "zh_name": "",
+          "type": "Software"
+        },
+        {
+          "id": "microsoft -net_framework 3.5.1",
+          "name": "microsoft -net_framework 3.5.1",
+          "zh_name": "",
+          "type": "Software"
+        },
+        {
+          "id": "microsoft -net_framework 4.5.2",
+          "name": "microsoft -net_framework 4.5.2",
+          "zh_name": "",
+          "type": "Software"
+        },
+        {
+          "id": "microsoft -net_framework 4.6",
+          "name": "microsoft -net_framework 4.6",
+          "zh_name": "",
+          "type": "Software"
+        },
+        {
+          "id": "microsoft -net_framework 4.6.1",
+          "name": "microsoft -net_framework 4.6.1",
+          "zh_name": "",
+          "type": "Software"
+        },
+        {
+          "id": "microsoft -net_framework 4.6.2",
+          "name": "microsoft -net_framework 4.6.2",
+          "zh_name": "",
+          "type": "Software"
+        },
+        {
+          "id": "microsoft -net_framework 4.7",
+          "name": "microsoft -net_framework 4.7",
+          "zh_name": "",
+          "type": "Software"
+        },
+        {
+          "id": "CWE-20",
+          "name": "CWE-20",
+          "zh_name": "",
+          "type": "Weakness"
+        },
+        {
+          "id": "qianxin-skyeye-13798",
+          "name": "qianxin-skyeye-13798",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "CVE-2016-7858",
+          "name": "CVE-2016-7858",
+          "zh_name": "",
+          "type": "Vulnerability"
+        },
+        {
+          "id": "qianxin-skyeye-7444",
+          "name": "qianxin-skyeye-7444",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "CVE-2007-5111",
+          "name": "CVE-2007-5111",
+          "zh_name": "",
+          "type": "Vulnerability"
+        },
+        {
+          "id": "eb_design_pty_ltd ebcrypt",
+          "name": "eb_design_pty_ltd ebcrypt",
+          "zh_name": "",
+          "type": "Software"
+        },
+        {
+          "id": "qianxin-skyeye-14111",
+          "name": "qianxin-skyeye-14111",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "CVE-2016-1006",
+          "name": "CVE-2016-1006",
+          "zh_name": "",
+          "type": "Vulnerability"
+        },
+        {
+          "id": "CWE-94",
+          "name": "CWE-94",
+          "zh_name": "",
+          "type": "Weakness"
+        },
+        {
+          "id": "topsec-taw-80004",
+          "name": "topsec-taw-80004",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "sangfor-IPS-12020600",
+          "name": "sangfor-IPS-12020600",
+          "zh_name": "",
+          "type": "AE"
+        },
+        {
+          "id": "ba-340550",
+          "name": "Install New Service",
+          "zh_name": "安装新服务",
+          "type": "BA"
+        },
+        {
+          "id": "ba-410568",
+          "name": "Capture Credentials via Keylogger",
+          "zh_name": "通过键盘记录器捕获凭据",
+          "type": "BA"
+        }
+      ],
+      "links": [
+        {
+          "id": "APT-A-Slice-of-2017-Sofacy-Activity---Securelist:ba-252163",
+          "src": "APT-A-Slice-of-2017-Sofacy-Activity---Securelist",
+          "dst": "ba-252163",
+          "tag": "contain"
+        },
+        {
+          "id": "ba-252163:TopIDP-18951",
+          "src": "ba-252163",
+          "dst": "TopIDP-18951",
+          "tag": "instance"
+        },
+        {
+          "id": "TopIDP-18951:CVE-2006-2492",
+          "src": "TopIDP-18951",
+          "dst": "CVE-2006-2492",
+          "tag": "exploit"
+        },
+        {
+          "id": "CVE-2006-2492:microsoft word 2003",
+          "src": "CVE-2006-2492",
+          "dst": "microsoft word 2003",
+          "tag": "hasVulnerability"
+        },
+        {
+          "id": "ba-252163:TopIDP-18950",
+          "src": "ba-252163",
+          "dst": "TopIDP-18950",
+          "tag": "instance"
+        },
+        {
+          "id": "TopIDP-18950:CVE-2006-2492",
+          "src": "TopIDP-18950",
+          "dst": "CVE-2006-2492",
+          "tag": "exploit"
+        },
+        {
+          "id": "ba-252163:TopIDP-19742",
+          "src": "ba-252163",
+          "dst": "TopIDP-19742",
+          "tag": "instance"
+        },
+        {
+          "id": "TopIDP-19742:CVE-2006-2492",
+          "src": "TopIDP-19742",
+          "dst": "CVE-2006-2492",
+          "tag": "exploit"
+        },
+        {
+          "id": "ba-252163:TopTVD-18951",
+          "src": "ba-252163",
+          "dst": "TopTVD-18951",
+          "tag": "instance"
+        },
+        {
+          "id": "TopTVD-18951:CVE-2006-2492",
+          "src": "TopTVD-18951",
+          "dst": "CVE-2006-2492",
+          "tag": "exploit"
+        },
+        {
+          "id": "ba-252163:TopTVD-18950",
+          "src": "ba-252163",
+          "dst": "TopTVD-18950",
+          "tag": "instance"
+        },
+        {
+          "id": "TopTVD-18950:CVE-2006-2492",
+          "src": "TopTVD-18950",
+          "dst": "CVE-2006-2492",
+          "tag": "exploit"
+        },
+        {
+          "id": "ba-252163:TopTVD-19742",
+          "src": "ba-252163",
+          "dst": "TopTVD-19742",
+          "tag": "instance"
+        },
+        {
+          "id": "TopTVD-19742:CVE-2006-2492",
+          "src": "TopTVD-19742",
+          "dst": "CVE-2006-2492",
+          "tag": "exploit"
+        },
+        {
+          "id": "ba-252163:SANGFOR_IPS_12020600",
+          "src": "ba-252163",
+          "dst": "SANGFOR_IPS_12020600",
+          "tag": "instance"
+        },
+        {
+          "id": "SANGFOR_IPS_12020600:CVE-2017-8759",
+          "src": "SANGFOR_IPS_12020600",
+          "dst": "CVE-2017-8759",
+          "tag": "exploit"
+        },
+        {
+          "id": "CVE-2017-8759:microsoft -net_framework 2.0 sp2",
+          "src": "CVE-2017-8759",
+          "dst": "microsoft -net_framework 2.0 sp2",
+          "tag": "hasVulnerability"
+        },
+        {
+          "id": "CVE-2017-8759:microsoft -net_framework 3.5",
+          "src": "CVE-2017-8759",
+          "dst": "microsoft -net_framework 3.5",
+          "tag": "hasVulnerability"
+        },
+        {
+          "id": "CVE-2017-8759:microsoft -net_framework 3.5.1",
+          "src": "CVE-2017-8759",
+          "dst": "microsoft -net_framework 3.5.1",
+          "tag": "hasVulnerability"
+        },
+        {
+          "id": "CVE-2017-8759:microsoft -net_framework 4.5.2",
+          "src": "CVE-2017-8759",
+          "dst": "microsoft -net_framework 4.5.2",
+          "tag": "hasVulnerability"
+        },
+        {
+          "id": "CVE-2017-8759:microsoft -net_framework 4.6",
+          "src": "CVE-2017-8759",
+          "dst": "microsoft -net_framework 4.6",
+          "tag": "hasVulnerability"
+        },
+        {
+          "id": "CVE-2017-8759:microsoft -net_framework 4.6.1",
+          "src": "CVE-2017-8759",
+          "dst": "microsoft -net_framework 4.6.1",
+          "tag": "hasVulnerability"
+        },
+        {
+          "id": "CVE-2017-8759:microsoft -net_framework 4.6.2",
+          "src": "CVE-2017-8759",
+          "dst": "microsoft -net_framework 4.6.2",
+          "tag": "hasVulnerability"
+        },
+        {
+          "id": "CVE-2017-8759:microsoft -net_framework 4.7",
+          "src": "CVE-2017-8759",
+          "dst": "microsoft -net_framework 4.7",
+          "tag": "hasVulnerability"
+        },
+        {
+          "id": "SANGFOR_IPS_12020600:CWE-20",
+          "src": "SANGFOR_IPS_12020600",
+          "dst": "CWE-20",
+          "tag": "exploit"
+        },
+        {
+          "id": "ba-252163:qianxin-skyeye-13798",
+          "src": "ba-252163",
+          "dst": "qianxin-skyeye-13798",
+          "tag": "instance"
+        },
+        {
+          "id": "qianxin-skyeye-13798:CVE-2016-7858",
+          "src": "qianxin-skyeye-13798",
+          "dst": "CVE-2016-7858",
+          "tag": "exploit"
+        },
+        {
+          "id": "ba-252163:qianxin-skyeye-7444",
+          "src": "ba-252163",
+          "dst": "qianxin-skyeye-7444",
+          "tag": "instance"
+        },
+        {
+          "id": "qianxin-skyeye-7444:CVE-2007-5111",
+          "src": "qianxin-skyeye-7444",
+          "dst": "CVE-2007-5111",
+          "tag": "exploit"
+        },
+        {
+          "id": "CVE-2007-5111:eb_design_pty_ltd ebcrypt",
+          "src": "CVE-2007-5111",
+          "dst": "eb_design_pty_ltd ebcrypt",
+          "tag": "hasVulnerability"
+        },
+        {
+          "id": "ba-252163:qianxin-skyeye-14111",
+          "src": "ba-252163",
+          "dst": "qianxin-skyeye-14111",
+          "tag": "instance"
+        },
+        {
+          "id": "qianxin-skyeye-14111:CVE-2016-1006",
+          "src": "qianxin-skyeye-14111",
+          "dst": "CVE-2016-1006",
+          "tag": "exploit"
+        },
+        {
+          "id": "qianxin-skyeye-14111:CWE-94",
+          "src": "qianxin-skyeye-14111",
+          "dst": "CWE-94",
+          "tag": "exploit"
+        },
+        {
+          "id": "ba-252163:topsec-taw-80004",
+          "src": "ba-252163",
+          "dst": "topsec-taw-80004",
+          "tag": "instance"
+        },
+        {
+          "id": "ba-252163:sangfor-IPS-12020600",
+          "src": "ba-252163",
+          "dst": "sangfor-IPS-12020600",
+          "tag": "instance"
+        },
+        {
+          "id": "sangfor-IPS-12020600:CVE-2017-8759",
+          "src": "sangfor-IPS-12020600",
+          "dst": "CVE-2017-8759",
+          "tag": "exploit"
+        },
+        {
+          "id": "sangfor-IPS-12020600:CWE-20",
+          "src": "sangfor-IPS-12020600",
+          "dst": "CWE-20",
+          "tag": "exploit"
+        },
+        {
+          "id": "APT-A-Slice-of-2017-Sofacy-Activity---Securelist:ba-340550",
+          "src": "APT-A-Slice-of-2017-Sofacy-Activity---Securelist",
+          "dst": "ba-340550",
+          "tag": "contain"
+        },
+        {
+          "id": "APT-A-Slice-of-2017-Sofacy-Activity---Securelist:ba-410568",
+          "src": "APT-A-Slice-of-2017-Sofacy-Activity---Securelist",
+          "dst": "ba-410568",
+          "tag": "contain"
+        }
+      ],
+      "source": "generate",
+      "is_delete": 0,
+      "publish_date": null,
+      "last_update_date": null
+    }
+  }

@@ -783,7 +783,7 @@ export default {
     // 弹窗样式
     .drama-dialog{
         .el-textarea{
-            /deep/.el-textarea__inner{
+            :deep(.el-textarea__inner){
                 background-color: #F0F0F0;
                 border: none;
                 height: 76px !important;

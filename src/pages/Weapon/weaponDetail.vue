@@ -282,7 +282,7 @@ export default {
                 span{
                     float: right;
                 }
-                /deep/.el-input {
+                :deep(.el-input){
                     margin-top: 7px;    // 这种写法有问题，但是暂时想不起怎么写了
                     .el-input__inner {
                         border: none;
@@ -322,7 +322,7 @@ export default {
         }
         .more{
             height: 70px;
-            /deep/.el-textarea{
+            :deep(.el-textarea){
                 height: 60px;
                 .el-textarea__inner{
                     height: 60px !important;
