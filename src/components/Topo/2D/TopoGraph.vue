@@ -269,12 +269,6 @@ const initGraph = (data) => {
             .data(data.links)
             .enter()
             .append("text")
-            // .attr("text-anchor", "middle")
-            // // .attr('dx',d => {return getLineTextDx(d)})
-            // .attr('border','1px solid red')
-            // .attr('startOffset','50%')
-            // .attr('dx', function(d){ return radius + d.tag.length*12/2})
-            // .attr('dy', 10) 
 
     lintText.append('textPath')
         .attr('xlink:href',function(d,i) {return '#edgepath'+i})
@@ -282,10 +276,11 @@ const initGraph = (data) => {
         .style("font-size", 12)
         .attr("fill", 'rgba(153,153,153,0.4)')
 
-            // .attr('border','1px solid red')
-            .attr("text-anchor", "middle")
-            // .attr('dx',d => {return getLineTextDx(d)})
-            .attr('startOffset','50%')
+        // text居中对齐
+        .attr("text-anchor", "middle")
+        // 调整其实位置，startOffset为百分数时，起始位置 = startOffset * 总长度。startOffset为具体数字时，起始位置 = startOffset + 的起始位置。
+        //利用startOffset和text-anchor，可以实现文字居中摆放。
+        .attr('startOffset','50%')
 
         // .attr('fill','red')
         .text(function(d,i){
